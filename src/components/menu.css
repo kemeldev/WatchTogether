@@ -1,0 +1,57 @@
+.menu_mainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 100vw;
+  background-color: #100D22;
+  position: absolute;
+  top: 0;
+  left: -300px;
+  border: solid yellow 1px;
+  transition: transform 0.5s ease-in-out;
+}
+
+
+.menu_mainContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu_mainContainer h3 {
+  padding: 0.3rem;
+  margin: 0;
+}
+
+.menu_mainContainer h4 {
+  padding: 0;
+  margin: 0;
+  margin-left: 8%;
+  margin-bottom: 0.5rem;
+}
+
+.menu_mainContainer.menuOpen {
+  transform: translateX(300px);
+  transition: transform 0.5s ease-in-out;
+
+}
+
+.menu_closeX {
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  top: 2%;
+}
+
+.menu_menuTitle,
+.menu_otherTitle {
+  padding-top: 3rem;
+  padding-left: 2rem;
+}
+
+.menu_menuTitle hr,
+.menu_otherTitle hr {
+  height: 1px;
+  width: 80%;
+  margin-right: 20%;
+}
