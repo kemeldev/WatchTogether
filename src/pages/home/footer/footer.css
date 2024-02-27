@@ -1,0 +1,29 @@
+.footer_mainContainer {
+  width: 100vw;
+  height: 400px;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  padding: 8rem 4rem;
+}
+
+.footer_list {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.footer_list ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  transform: translateX(-30%);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer_list li {
+  font-weight: 300;
+}

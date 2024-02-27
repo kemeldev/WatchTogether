@@ -1,12 +1,12 @@
 .navbar_mainContainer {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 99vw;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100vw;
+  padding: 0 4rem 0 4rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: solid 1px red;
   z-index: 2;
 }
 

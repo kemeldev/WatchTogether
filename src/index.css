@@ -31,7 +31,7 @@ body {
   display: flex;
   width: 99vw;
   min-width: 320px;
-  border: seagreen solid 1px;
+  overflow-x: hidden;
 
 }
 

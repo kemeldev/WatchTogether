@@ -1,0 +1,59 @@
+.popular_mainContainer {
+  width: 100vw;
+  position: relative;
+  z-index: -1;
+}
+
+.popular_serieContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow: hidden;
+
+
+}
+
+.popular_backgroundImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+
+}
+
+.popular_backgroundImage img {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+.popular_section {
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+}
+
+.popular_posterImage {
+  width: 50%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+
+}
+
+.popular_posterImage img {
+  padding: 2rem;
+  object-fit: cover;
+}
+
+
+.popular_textContent {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  width: 50%;
+  padding: 25% 2rem 25% 2rem;
+}

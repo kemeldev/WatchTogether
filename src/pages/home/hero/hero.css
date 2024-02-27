@@ -1,14 +1,26 @@
 .hero_mainContainer {
   position: relative;
-  width: 98vw;
-  height: 800px;
-  border: blue solid 1px;
+  width: 100vw;
+}
+
+.hero_mainImageVideo {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+}
+
+.hero_imageContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
 }
 
 .hero_mainImageVideo div img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
-  position: relative;
 }
 
 .hero_mainImageVideo ::before {
@@ -17,21 +29,130 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.99), rgba(0, 0, 0, 0));
   z-index: 1;
 
 }
 
 .hero_videoContainer {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   border: solid rgb(0, 132, 255) 1px;
+  height: 100%;
   width: 100%;
+  opacity: 1;
 
 }
 
 .hero_videoContainer video {
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  filter: brightness(0.8);
+}
+
+.hero_textContent {
+  /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); */
+  position: absolute;
+  color: white;
+  font-size: 28px;
+  top: 20%;
+  left: 7%;
+}
+
+.hero_popularMovies {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 50%;
+  left: 15%;
+}
+
+.hero_posterMainContainer {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero_posterContainer {
+  margin: 0;
+  position: absolute;
+  display: flex;
+  bottom: -5%;
+  width: 70%;
+  overflow-x: hidden;
+}
+
+.hero_posterContainer:hover {
+  transform: scale(1);
+}
+
+.hero_posterWrapper {
+  position: relative;
+  z-index: 2;
+  bottom: 0;
+  display: flex;
+  gap: 2.5rem;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.hero_posterWrapper>* {
+  flex-shrink: 0;
+}
+
+
+.hero_posterWrapper {
+  --sb-track-color: #464646;
+  --sb-thumb-color: #00dc58;
+  --sb-size: 14px;
+}
+
+.hero_posterWrapper::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.hero_posterWrapper::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 5px;
+}
+
+.hero_posterWrapper::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 5px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .hero_posterWrapper {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+.hero_textContent h2 {
+  background-image: linear-gradient(to right,
+      #f6f7f8 0%,
+      #7d7d7e 10%,
+      #f6f7f8 20%,
+      #f6f7f8 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: white;
+  -webkit-text-fill-color: transparent;
+  animation: bgPos 3.5s linear infinite;
+}
+
+
+@keyframes bgPos {
+  0% {
+    background-position: 50% 0;
+  }
+
+  100% {
+    background-position: -150% 0;
+  }
 }
