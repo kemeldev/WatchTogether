@@ -1,11 +1,32 @@
 .demo_mainContainer {
   width: 100vw;
   position: relative;
+  padding: 4rem 0;
 }
 
-.demo_popularSeries {
+.hero_popularSeries {
+  display: flex;
+  justify-content: left;
+  width: 80%;
+  padding-left: 10%;
+  gap: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-  margin-left: 15%;
+}
+
+.hero_popularSeries h3:hover {
+  background-color: #dfdfdf6b;
+}
+
+.hero_popularSeries h3 {
+  cursor: pointer;
+  background-color: #bbb4b46b;
+  border: #dddddd56 solid;
+  border-radius: 0.5rem;
+  color: #dddddd56;
+}
+
+.hero_popularSeries .active {
+  color: white;
 }
 
 .demo_posterMainContainer {
@@ -65,5 +86,35 @@
 @supports not selector(::-webkit-scrollbar) {
   .demo_posterWrapper {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .demo_textContent {
+    border: sadlebrown solid;
+    width: 90%;
+  }
+
+  .demo_popularSeries {
+    left: 7%;
+  }
+
+  .demo_posterContainer {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .demo_posterContainer {
+    bottom: 5%;
+  }
+
+  .demo_mainImageVideo {
+    width: 200%;
+    transform: translateX(-50%);
+  }
+
+  .demo_popularSeries {
+    top: 60%;
   }
 }

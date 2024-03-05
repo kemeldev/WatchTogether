@@ -1,25 +1,27 @@
+import { useState } from 'react';
 import { johnWickWallpaper } from '../../../assets/images'
-import { JohnWickVideo } from '../../../assets/videos'
+// import { JohnWickVideo } from '../../../assets/videos'
 import Poster from '../../../components/poster';
 import './hero.css'
-import { Suspense, lazy, useEffect, useState } from 'react'
 
 function Hero() {
-  const [showLazyLoadedV, setShowLazyLoadedV] = useState(false);
+  const [activeTab, setActiveTab] = useState('Popular');
+  const handleClick = (tab) => {
+    setActiveTab(tab);
+  };
+  // const [showLazyLoadedV, setShowLazyLoadedV] = useState(false);
   const posters = Array.from({ length: 20 }, (_, index) => <Poster key={index} />);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLazyLoadedV(true);
-    }, 3000);
-    
-
-    return () => {
-      clearTimeout(timer);}
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowLazyLoadedV(true);
+  //   }, 3000);
+  //   return () => {
+  //     clearTimeout(timer);}
+  // }, []);
 
 
-  const LazyLoadedV = lazy(() => import("../../../components/LazyLoadedVideo"))
+  // const LazyLoadedV = lazy(() => import("../../../components/LazyLoadedVideo"))
 
   return (
     <>
@@ -45,7 +47,8 @@ function Hero() {
         </div>
 
         <div className='hero_popularMovies'>
-          <h3>Popular Movies</h3>
+          <h3 className={activeTab === 'Popular' ? 'active' : 'inactive'} onClick={() => handleClick('Popular')}>Popular Movies</h3>
+          <h3 className={activeTab === 'Trending' ? 'active' : 'inactive'} onClick={() => handleClick('Trending')}>Trending Movies</h3>
         </div>
 
         <div className='hero_posterMainContainer'>

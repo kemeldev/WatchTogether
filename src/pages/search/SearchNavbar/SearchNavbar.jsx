@@ -1,9 +1,9 @@
-import './navbar.css'
+import './SearchNavbar.css'
 import { hamburgerMenu, profileLogo, glassMagnifier } from '../../../assets/icons'
 import { useState } from 'react'
 import Menu from '../../../components/menu'
 
-function Navbar() {
+function SearchNavbar() {
   const [menuOpen , setMenuOpen] = useState(false)
   const toggleMenu = () => {
     setMenuOpen(prevMenuOpen => !prevMenuOpen);
@@ -11,38 +11,35 @@ function Navbar() {
 
   return (
     <>
-      <div className='navbar_mainContainer'>
+      <div className='SearchNavbar_mainContainer'>
 
-        <div className='navbar_leftSideContent'>
+        <div className='SearchNavbar_leftSideContent'>
           <h3>WatchTogether</h3>
-          <div className='navbar_hamburgerMenu'>
+          <div className='SearchNavbar_hamburgerMenu'>
             <img 
             src={hamburgerMenu}
             onClick={()=>setMenuOpen(!menuOpen)} />
           </div>
         </div>
 
-        <div className='navbar_centerContent'>
+        <div className='SearchNavbar_centerContent'>
           <div >
             WatchTogether
           </div>
           <ul>
             <li>Movies</li>
             <li>Series</li>
-            <li>People</li>
+            <li>All</li>
           </ul>
         </div>
 
-        <div className='navbar_SearchAndLogin'>
-          <div className='navbar_profileIcon'>
-            <img src={profileLogo} alt="profile logo" />
-          </div>
-          <div>Login</div>
-
+        <div className='SearchNavbar_SearchAndLogin'>
           <div>
-            <img src={glassMagnifier} alt="glass magnifier logo" />
+            <img src={profileLogo} alt="" />
           </div>
-          <div>Search</div>
+          
+
+          
           
         </div>
 
@@ -54,4 +51,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default SearchNavbar

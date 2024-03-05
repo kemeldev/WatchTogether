@@ -1,0 +1,169 @@
+.overview_mainContainer {
+  width: 100vw;
+  position: relative;
+  z-index: -1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: black;
+
+}
+
+.overview_serieContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  overflow: hidden;
+  padding-bottom: 1rem;
+
+
+}
+
+.overview_backgroundImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.overview_backgroundImage img {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+
+}
+
+.overview_backgroundImage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+  z-index: 1;
+
+}
+
+.overview_description {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 1;
+}
+
+.overview_title {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.overview_title img {
+  width: 35px;
+  height: 35px;
+  transform: translateX(+30%);
+}
+
+
+
+.overview_actions {
+  width: 40%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 75px);
+  column-gap: 25px;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+  z-index: 1;
+}
+
+.overview_actions>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overview_actions div img {
+  width: 35px;
+  height: 35px;
+}
+
+.score {
+  font-size: 32px;
+}
+
+@media screen and (max-width: 1000px) {
+  .overview_actions h2 {
+    font-size: 22px;
+  }
+
+  .overview_actions div img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .score {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .overview_serieContainer {
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .overview_description {
+    width: 100vw;
+
+  }
+
+  .overview_actions h2 {
+    margin: 0;
+  }
+
+  .overview_actions {
+    padding-bottom: 0rem;
+    margin: 0;
+    flex-grow: 1;
+
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .overview_serieContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+  }
+
+  .overview_backgroundImage {
+    position: absolute;
+    width: 100%;
+    top: -30%;
+  }
+
+  .overview_backgroundImage img {
+    width: 100%;
+    object-fit: contain;
+    z-index: 0;
+
+  }
+
+  .overview_actions {
+    height: 200px;
+    flex-grow: 0;
+    margin-bottom: 2rem;
+  }
+}

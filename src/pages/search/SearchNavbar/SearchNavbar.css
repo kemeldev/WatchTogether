@@ -1,0 +1,71 @@
+.SearchNavbar_mainContainer {
+  background-color: #100D22;
+  width: 100vw;
+  padding: 0 4rem 0 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.SearchNavbar_leftSideContent h3 {
+  display: block;
+}
+
+.SearchNavbar_hamburgerMenu img {
+  display: none;
+}
+
+.SearchNavbar_centerContent div {
+  display: none;
+}
+
+.SearchNavbar_centerContent ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.SearchNavbar_SearchAndLogin {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+
+.SearchNavbar_SearchAndLogin div img {
+  width: 30px;
+  height: 30px;
+}
+
+/* @media screen and (min-width: 800px) and (max-width: 1100px) {} */
+
+@media screen and (max-width: 700px) {
+  .SearchNavbar_leftSideContent h3 {
+    display: none;
+  }
+
+  .SearchNavbar_hamburgerMenu img {
+    display: block;
+  }
+
+  .SearchNavbar_centerContent ul {
+    display: none;
+  }
+
+  .SearchNavbar_centerContent div {
+    display: block;
+  }
+
+  .SearchNavbar_SearchAndLogin div:nth-child(odd) {
+    display: block;
+  }
+
+
+  .SearchNavbar_SearchAndLogin div:nth-child(even) {
+    display: none;
+  }
+}

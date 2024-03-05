@@ -1,7 +1,7 @@
 .popular_mainContainer {
   width: 100vw;
   position: relative;
-  z-index: -1;
+  z-index: 0;
 }
 
 .popular_serieContainer {
@@ -11,7 +11,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  overflow: hidden;
 
 
 }
@@ -33,9 +32,10 @@
 }
 
 .popular_section {
+  width: 100vw;
   display: flex;
   flex-direction: row;
-  z-index: 1;
+  z-index: 0;
 }
 
 .popular_posterImage {
@@ -53,7 +53,75 @@
 
 
 .popular_textContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  width: 45%;
+  padding: 8rem 2rem;
+
+}
+
+.popular_textContent button {
   width: 50%;
-  padding: 25% 2rem 25% 2rem;
+  height: 30px;
+  cursor: pointer;
+  background-color: #3838386b;
+  border: #dddddd56 solid;
+  border-radius: 0.5rem;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.popular_textContent button:hover {
+  background-color: #dfdfdf6b;
+}
+
+@media screen and (max-width: 730px) {
+  .popular_serieContainer {
+    display: flex;
+    flex-direction: column;
+    height: 900px;
+  }
+
+  .popular_serieContainer .reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .popular_section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .popular_posterImage {
+    width: 100vw;
+  }
+
+  .popular_posterImage img {
+    width: 70%;
+    object-fit: cover;
+  }
+
+  .popular_textContent {
+    width: 100vw;
+    padding: 0 1rem;
+
+  }
+
+
+}
+
+@media screen and (max-width: 500px) {
+  .popular_posterImage img {
+    width: 90%;
+    object-fit: cover;
+  }
+
+  .popular_textContent {
+    width: 100vw;
+    padding: 0 2rem;
+
+  }
+
 }

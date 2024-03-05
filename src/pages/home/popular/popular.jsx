@@ -20,22 +20,22 @@ function Popular() {
             <div className='popular_textContent'>
               <h3>Find immersive, funny, thrilling, and suspensefull experiences. No matter your preference, you’ll find the right choice</h3>
 
-              <h3>BREAKING BAD</h3>
+              <h2>BREAKING BAD</h2>
               <button>View Details</button>
             </div>
           </article>
 
         </div>
 
-        <div className='popular_serieContainer'>
+        <div className='popular_serieContainer reverse'>
           <div className='popular_backgroundImage'>
             <img src={frierenwallpaper} alt="wallpaper image of a serie" />
           </div>
 
-          <article className='popular_section'>
+          <article className='popular_section reverse'>
             <div className='popular_textContent'>
               <h3>Discover new and exiting fantasy worlds</h3>
-              <h3>FRIEREN BEYOND JOURNEY’S END</h3>
+              <h2>FRIEREN BEYOND JOURNEY’S END</h2>
               <button>View Details</button>
             </div>
             <div className='popular_posterImage'>

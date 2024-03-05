@@ -9,25 +9,17 @@ function Home() {
 
   return (
     <>
-      <section>
         <Navbar />
-      </section>
 
       <section style={{position: "relative"}}>
         <Hero />
       </section>
 
-      <section>
         <Popular />
-      </section>
 
-      <section>
         <Demo />
-      </section>
 
-      <section>
         <Footer />
-      </section>
     </>
   )
 }

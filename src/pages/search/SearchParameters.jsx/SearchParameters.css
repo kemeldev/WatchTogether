@@ -1,0 +1,136 @@
+.SearchParameters_mainContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  width: 25%;
+  background-color: cadetblue;
+
+}
+
+.SearchP_title {
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(5%);
+  padding: 0 1rem 0 1rem;
+  cursor: pointer;
+}
+
+.SearchParameters_paramsContainer {
+  width: 80%;
+  height: 100%;
+  background-color: gray;
+  border-radius: 1rem;
+}
+
+/* search container */
+
+.SearchParameters_searchContainer {
+  border: solid black 2px;
+  border-radius: 1rem 1rem 0 0;
+  overflow: hidden;
+}
+
+.SearchP_search.searchOpen {
+  height: 80px;
+  transition: height 0.3s ease-in-out;
+}
+
+.SearchP_search {
+  height: 0px;
+  transition: height 0.3s ease-in-out;
+}
+
+.SearchP_search form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0rem 1rem;
+}
+
+/* sort container */
+
+.SearchParameters_SortBy {
+  border: solid black 2px;
+  overflow: hidden;
+  border-top: none;
+}
+
+.SearchP_sort form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0rem 1rem;
+}
+
+.SearchP_sort {
+  height: 0px;
+  transition: height 0.3s ease-in-out;
+}
+
+.sortOpen {
+  height: 120px;
+  transition: height 0.3s ease-in-out;
+}
+
+.SearchP_sort form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+
+.sortItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* quick search */
+
+.SearchParameters_QuickSearch {
+  border: solid black 2px;
+  border-radius: 0 0 1rem 1rem;
+  overflow: hidden;
+  border-top: none;
+
+}
+
+.SearchP_quick form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0rem 1rem;
+  border: solid blue;
+
+}
+
+.SearchP_quick {
+  height: 0px;
+  transition: height 0.3s ease-in-out;
+}
+
+.quickOpen {
+  height: 300px;
+  transition: height 0.3s ease-in-out;
+}
+
+.SearchP_quick form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: solid blue;
+
+}
+
+.quickItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

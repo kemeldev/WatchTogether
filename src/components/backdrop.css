@@ -1,24 +1,25 @@
-.poster_mainContainer {
+.backdrop_mainContainer {
   position: relative;
-  width: 150px;
+  width: 320px;
   display: flex;
   flex-direction: column;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   overflow: hidden;
 
 }
 
-.poster_imageContainer {
+.backdrop_imageContainer {
   width: 100%;
   background-color: transparent
 }
 
-.poster_imageContainer img {
+.backdrop_imageContainer img {
   width: 100%;
   object-fit: cover;
+  border-radius: 1rem 1rem 0 0;
 }
 
-.poster_textContent {
+.backdrop_textContent {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -32,44 +33,44 @@
 
 }
 
-.poster_mainContainer:hover .poster_textContent {
+.backdrop_mainContainer:hover .backdrop_textContent {
   transform: translateY(0);
 }
 
-.poster_textContent h3:nth-child(1) {
+.backdrop_textContent h3:nth-child(1) {
   width: 100%;
   word-wrap: break-word;
 
 }
 
-.poster_textContent h3 {
+.backdrop_textContent h3 {
   font-size: 14px;
   padding-top: 0;
   margin-top: 0;
 }
 
-.poster_textContent div {
+.backdrop_textContent div {
   display: flex;
   align-items: center;
   margin: 0;
   padding: 0;
 }
 
-.poster_textContent img {
+.backdrop_textContent img {
   width: 16px;
   height: 16px;
   transform: translateY(-20%);
 }
 
-.poster_textContent h5,
-.poster_textContent h4 {
+.backdrop_textContent h5,
+.backdrop_textContent h4 {
   font-size: 12px;
   margin: 0;
   margin-bottom: 0.4rem;
 }
 
-.poster_textContent h4,
-.poster_textContent img {
+.backdrop_textContent h4,
+.backdrop_textContent img {
   position: absolute;
   right: 10%;
 }
