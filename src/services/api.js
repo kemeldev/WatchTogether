@@ -16,9 +16,24 @@ export const fetchFromApi = async (url, pageParam = 1) => {
     if (!response.ok) {
       throw new Error(`Failed to fetch data from API. Status: ${response.status}`)
     }
-    const { results, page } = await response.json()
-    // this next cursor is to be used with ReactQuery for infinity queries if needed
-    const nextCursor = Number(page + 1)
+
+    const responseData = await response.json();
+
+    let results, nextCursor;
+    if (Array.isArray(responseData.results)) {
+      // Handle case where results is an array
+      results = responseData.results;
+      nextCursor = Number(responseData.page) + 1;
+    } else {
+      // Handle case where results is a single object
+      results = responseData;
+      nextCursor = null; // No pagination in this case
+    }
+
+
+    // const { results, page } = await response.json()
+    // // this next cursor is to be used with ReactQuery for infinity queries if needed
+    // const nextCursor = Number(page + 1)
     return {
       results, nextCursor
     }

@@ -3,8 +3,10 @@ import Poster from '../../../components/poster';
 import './demo.css'
 import { useFetch } from '../../../hooks/useFetch';
 import { urls } from '../../../constants';
+import { Link } from 'react-router-dom';
 
 function Demo() {
+  const series = "series"
   const [url, setUrls] = useState(urls.popularSeries)
   const [activeTab, setActiveTab] = useState('Popular')
   const handleClick = (tab) => {
@@ -40,6 +42,12 @@ function Demo() {
             {isError && <strong>Error fetching data</strong>}
             {data.results && data.results.length > 0 ? (
               data.results.map((item) => (
+
+                <Link
+                        to={`/details/${item.id}`}
+                        state={series}
+                        key={item.id}
+                      >
                 <div key={item.id}>
                   <Poster
                     name={item.name}
@@ -47,9 +55,9 @@ function Demo() {
                     posterImg={item.poster_path} 
                   />
                 </div>
+               </Link>
               ))
             ) : null}
-
 
             </div>
           </div>

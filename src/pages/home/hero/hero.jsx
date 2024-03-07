@@ -4,11 +4,14 @@ import { johnWickWallpaper } from '../../../assets/images'
 import Poster from '../../../components/poster';
 import './hero.css'
 import { useFetch } from '../../../hooks/useFetch';
-import { urls } from '../../../constants';
+import { urlBackgroundImage, urls } from '../../../constants';
+import { Link } from 'react-router-dom';
 
 function Hero() {
+  const movies = "movies"
   const [url, setUrls] = useState(urls.popularMovies)
   const [activeTab, setActiveTab] = useState('Popular')
+  const [backImage, setBackImage] = useState(johnWickWallpaper)
   const handleClick = (tab) => {
     setActiveTab(tab);
     if (tab === 'Trending') {
@@ -22,6 +25,12 @@ function Hero() {
   const queryKey = ['popularAndTrendingMovies']
   const { isError, isLoading, data, refetch } = useFetch(url, queryKey)
 
+  const dataToRender = data.results
+
+  const mouseOver = (backImage) => {
+    setBackImage(urlBackgroundImage+backImage)
+  }
+
   useEffect(() => {
     refetch()
   }, [url, refetch])
@@ -32,7 +41,7 @@ function Hero() {
 
         <div className='hero_mainImageVideo'>
           <div className='hero_imageContainer'>
-            <img src={johnWickWallpaper} alt="hero image" />
+            <img src={backImage} alt="hero image" />
           </div>
         </div>
 
@@ -55,26 +64,33 @@ function Hero() {
         </div>
 
         <div className='hero_posterMainContainer'>
-        <div className='hero_posterContainer'>
+          <div className='hero_posterContainer'>
 
-        <div className='hero_posterWrapper'>
-
-        {isLoading && <strong>Loading data</strong>}
-        {isError && <strong>Error fetching data</strong>}
-        {data.results && data.results.length > 0 ? (
-          data.results.map((item) => (
-            <div key={item.id}>
-              <Poster
-                title={item.title}
-                
-                score={item.vote_average}
-                posterImg={item.poster_path} 
-              />
+            <div className='hero_posterWrapper'>
+            {isLoading && <strong>Loading data</strong>}
+            {isError && <strong>Error fetching data</strong>}
+            {data.results && data.results.length > 0 ? (
+              data.results.map((item) => (
+                <Link
+                        to={`/details/${item.id}`}
+                        state={movies}
+                        key={item.id}
+                      >
+                <div 
+                  onMouseEnter={()=> mouseOver(item.backdrop_path)}
+                >
+                  <Poster
+                    title={item.title}
+                    score={item.vote_average}
+                    posterImg={item.poster_path} 
+                    
+                  />
+                </div>
+                </Link>
+              ))
+            ) : null}
             </div>
-          ))
-        ) : null}
-        </div>
-        </div>
+          </div>
         </div>
       </div>
     </>
