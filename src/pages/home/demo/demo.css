@@ -2,9 +2,10 @@
   width: 100vw;
   position: relative;
   padding: 4rem 0;
+  background-color: #000016;
 }
 
-.hero_popularSeries {
+.demo_popularSeries {
   display: flex;
   justify-content: left;
   width: 80%;
@@ -13,11 +14,11 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
-.hero_popularSeries h3:hover {
+.demo_popularSeries h3:hover {
   background-color: #dfdfdf6b;
 }
 
-.hero_popularSeries h3 {
+.demo_popularSeries h3 {
   cursor: pointer;
   background-color: #bbb4b46b;
   border: #dddddd56 solid;
@@ -25,7 +26,7 @@
   color: #dddddd56;
 }
 
-.hero_popularSeries .active {
+.demo_popularSeries .active {
   color: white;
 }
 

@@ -12,7 +12,7 @@ function Search() {
         <SearchNavbar />
       </section>
 
-      <section style={{display:"flex", position:"relative", width: "99vw"}}>
+      <section className='search_paramsAndList'>
         <SearchParameters />
         <ShowingList />
       </section>

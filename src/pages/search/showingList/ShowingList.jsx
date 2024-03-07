@@ -10,7 +10,7 @@ function ShowingList() {
       <div className='ShowingList_mainContainer'>
 
         <div>
-          <h2>NOW SHOWING <p>Variable</p></h2>
+          <h2>NOW SHOWING:  <span>Variable</span></h2>
         </div>
 
         <div className='list_container'>

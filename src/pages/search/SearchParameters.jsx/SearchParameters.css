@@ -2,9 +2,9 @@
   position: relative;
   display: flex;
   justify-content: center;
-  padding-top: 2rem;
+  padding-top: 5rem;
   width: 25%;
-  background-color: cadetblue;
+  background-color: rgb(161, 161, 161);
 
 }
 
@@ -19,7 +19,7 @@
 }
 
 .SearchParameters_paramsContainer {
-  width: 80%;
+  width: 90%;
   height: 100%;
   background-color: gray;
   border-radius: 1rem;
@@ -106,7 +106,6 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0rem 1rem;
-  border: solid blue;
 
 }
 
@@ -125,7 +124,6 @@
   flex-direction: column;
   gap: 0.25rem;
   padding: 0.5rem 1rem;
-  border: solid blue;
 
 }
 
@@ -133,4 +131,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+
+@keyframes rotate90 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes rotate-90 {
+  from {
+    transform: rotate(90deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.rotate-chevron {
+  animation: rotate90 0.5s forwards;
+}
+
+.return {
+  animation: rotate-90 0.5s forwards;
+}
+
+@media screen and (max-width: 750px) {
+  .SearchParameters_mainContainer {
+    width: 100%;
+    padding: 2rem 0 2rem 1rem;
+  }
+
+  .SearchP_title {
+    height: 35px;
+  }
 }

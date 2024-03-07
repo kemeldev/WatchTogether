@@ -13,6 +13,13 @@
   background-color: transparent
 }
 
+.poster_imageContainer p {
+  margin: 0;
+  padding-left: 0.25rem;
+  text-shadow: 2px 2px 4px rgba(218, 212, 212, 0.5);
+
+}
+
 .poster_imageContainer img {
   width: 100%;
   object-fit: cover;
@@ -24,13 +31,15 @@
   bottom: 0;
   right: 0;
   max-height: 100%;
+  height: 100%;
   padding: 1rem;
   transform: translateY(101%);
   overflow-y: auto;
-  transition: transform 0.3s ease-in;
+  transition: transform 0.2s ease-in;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
 
 }
+
 
 .poster_mainContainer:hover .poster_textContent {
   transform: translateY(0);

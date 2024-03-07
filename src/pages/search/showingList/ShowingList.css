@@ -1,5 +1,5 @@
 .ShowingList_mainContainer {
-  background-color: #10164d;
+  background-color: #555069;
   /* background-color: #9397BE; */
   position: relative;
   width: 75%;
@@ -9,10 +9,11 @@
   flex-direction: column;
 }
 
+
+
 .list_container {
   display: flex;
   width: 98%;
-  border: red solid;
 }
 
 .list_grid {
@@ -20,7 +21,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
   justify-items: center;
-  border: solid rgb(58, 141, 219);
   row-gap: 25px;
 
+}
+
+@media screen and (max-width: 750px) {
+  .ShowingList_mainContainer {
+    width: 100%;
+  }
 }

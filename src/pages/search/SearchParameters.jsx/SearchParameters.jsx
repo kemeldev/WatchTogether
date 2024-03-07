@@ -18,7 +18,9 @@ function SearchParameters() {
               <h3>Search</h3>
               <img 
                 src={chevronRight}
-                 />
+                className={!searchOpen ? 'return' : 'rotate-chevron'}
+                alt="Chevron Right"
+              />
             </div>
             <div className={searchOpen ? "SearchP_search searchOpen" : "SearchP_search"}>
               <hr />
@@ -35,7 +37,9 @@ function SearchParameters() {
                 <h3>Sort By</h3>
                 <img 
                   src={chevronRight}
-                  />
+                  className={!sortOpen ? 'return' : 'rotate-chevron'}
+                  alt="Chevron Right"
+              />
             </div>
             <div className={`SearchP_sort ${sortOpen ? 'sortOpen' : ''}`}>
             <hr />
@@ -61,7 +65,9 @@ function SearchParameters() {
                   <h3>Quick Search</h3>
                   <img 
                     src={chevronRight}
-                    />
+                    className={!quickOpen ? 'return' : 'rotate-chevron'}
+                    alt="Chevron Right"
+              />
             </div>
             <div className={`SearchP_quick ${quickOpen ? 'quickOpen' : ''}`}>
             <hr />

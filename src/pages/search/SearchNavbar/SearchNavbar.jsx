@@ -1,5 +1,5 @@
 import './SearchNavbar.css'
-import { hamburgerMenu, profileLogo, glassMagnifier } from '../../../assets/icons'
+import { hamburgerMenu, profileLogo } from '../../../assets/icons'
 import { useState } from 'react'
 import Menu from '../../../components/menu'
 

@@ -151,7 +151,7 @@
   .overview_backgroundImage {
     position: absolute;
     width: 100%;
-    top: -30%;
+    top: -35%;
   }
 
   .overview_backgroundImage img {
@@ -165,5 +165,11 @@
     height: 200px;
     flex-grow: 0;
     margin-bottom: 2rem;
+  }
+
+  .overview_backgroundImage::before {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+    z-index: 1;
+
   }
 }

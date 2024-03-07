@@ -11,6 +11,9 @@
 
 .SearchNavbar_leftSideContent h3 {
   display: block;
+  text-shadow: 4px 3px 6px rgba(235, 235, 235, 0.5);
+  cursor: pointer;
+  font-size: x-large;
 }
 
 .SearchNavbar_hamburgerMenu img {
@@ -25,6 +28,8 @@
   display: flex;
   list-style: none;
   gap: 1.5rem;
+  font-size: large;
+  font-weight: bold;
 }
 
 .SearchNavbar_SearchAndLogin {
@@ -44,12 +49,26 @@
 /* @media screen and (min-width: 800px) and (max-width: 1100px) {} */
 
 @media screen and (max-width: 700px) {
+
+  .SearchNavbar_mainContainer {
+    padding: 0 4rem 0 1rem;
+  }
+
   .SearchNavbar_leftSideContent h3 {
     display: none;
+
+  }
+
+  .SearchNavbar_centerContent {
+    text-shadow: 4px 3px 6px rgba(235, 235, 235, 0.5);
+    font-size: large;
+    font-weight: bold;
   }
 
   .SearchNavbar_hamburgerMenu img {
     display: block;
+    cursor: pointer;
+
   }
 
   .SearchNavbar_centerContent ul {

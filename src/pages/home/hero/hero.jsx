@@ -1,27 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { johnWickWallpaper } from '../../../assets/images'
 // import { JohnWickVideo } from '../../../assets/videos'
 import Poster from '../../../components/poster';
 import './hero.css'
+import { useFetch } from '../../../hooks/useFetch';
+import { urls } from '../../../constants';
 
 function Hero() {
-  const [activeTab, setActiveTab] = useState('Popular');
+  const [url, setUrls] = useState(urls.popularMovies)
+  const [activeTab, setActiveTab] = useState('Popular')
   const handleClick = (tab) => {
     setActiveTab(tab);
+    if (tab === 'Trending') {
+      setUrls(urls.trendingMovies);
+    } else if (tab === 'Popular') {
+      setUrls(urls.popularMovies);
+    }
   };
-  // const [showLazyLoadedV, setShowLazyLoadedV] = useState(false);
-  const posters = Array.from({ length: 20 }, (_, index) => <Poster key={index} />);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setShowLazyLoadedV(true);
-  //   }, 3000);
-  //   return () => {
-  //     clearTimeout(timer);}
-  // }, []);
 
 
-  // const LazyLoadedV = lazy(() => import("../../../components/LazyLoadedVideo"))
+  const queryKey = ['popularAndTrendingMovies']
+  const { isError, isLoading, data, refetch } = useFetch(url, queryKey)
+
+  useEffect(() => {
+    refetch()
+  }, [url, refetch])
 
   return (
     <>
@@ -53,24 +56,26 @@ function Hero() {
 
         <div className='hero_posterMainContainer'>
         <div className='hero_posterContainer'>
-          <div className='hero_posterWrapper'>
-            {posters}
-          </div>
+
+        <div className='hero_posterWrapper'>
+
+        {isLoading && <strong>Loading data</strong>}
+        {isError && <strong>Error fetching data</strong>}
+        {data.results && data.results.length > 0 ? (
+          data.results.map((item) => (
+            <div key={item.id}>
+              <Poster
+                title={item.title}
+                
+                score={item.vote_average}
+                posterImg={item.poster_path} 
+              />
+            </div>
+          ))
+        ) : null}
         </div>
         </div>
-
-
-
-        {/* 
-          <div className='hero_videoContainer'>
-          {showLazyLoadedV && (
-            <Suspense fallback={<div>Loading...</div>}>
-              <LazyLoadedV />
-            </Suspense>
-          )}
-          </div> */}
-
-
+        </div>
       </div>
     </>
   )

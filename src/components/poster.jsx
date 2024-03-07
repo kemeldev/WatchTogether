@@ -1,23 +1,26 @@
 import { ribbonIcon, starIcon } from '../assets/icons'
-import { openheimerposter } from '../assets/images'
+import { urlPosterImage } from '../constants'
 import './poster.css'
 
-function Poster() {
+function Poster({title, score, posterImg, name}) {
   
+  const userScore = Math.ceil(score * 10) / 10;
+  const displayTitle = title || name;
 
   return (
     <>
       <div className='poster_mainContainer'>
         <div className='poster_imageContainer'>
-          <img src={openheimerposter} alt="poster image" />
+          <img src={urlPosterImage+posterImg} alt="poster image" />
+          <p>{displayTitle}</p>
         </div>
 
         <div className='poster_textContent'>
 
-          <h3>Title goes hessd</h3>
+          <h3>{displayTitle}</h3>
           <div>
             <h5>Users Score</h5>
-            <h4>7.5</h4>
+            <h4>{userScore.toFixed(1)}</h4>
           </div>
           <div>
             <h5>Add to watchlist</h5>
