@@ -1,7 +1,7 @@
 .overview_mainContainer {
   width: 100vw;
   position: relative;
-  z-index: -1;
+  z-index: 1;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   background-color: black;
 
@@ -62,10 +62,14 @@
   gap: 30px;
 }
 
+
+
 .overview_title img {
   width: 35px;
   height: 35px;
   transform: translateX(+30%);
+  cursor: pointer;
+  z-index: 2;
 }
 
 

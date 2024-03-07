@@ -1,6 +1,6 @@
+import './details.css'
 import { useLocation, useParams } from 'react-router-dom'
 import Footer from '../home/footer/footer'
-import './details.css'
 import Overview from './overview/overview'
 import Recommendations from './recommendations/recommendations'
 import { useEffect, useState } from 'react'
@@ -9,54 +9,74 @@ import { useFetch } from '../../hooks/useFetch'
 
 
 function Details() {
-  const [url, setUrl] = useState("https://api.themoviedb.org/3/movie/30500?language=en-US")
+  const [detailsUrl, setDetailsUrl] = useState("")
+  const [recommendationsUrl, setRecommenUrl] = useState(urls.movieRecommendations)
+  const [videoUrl, setVideoUrl] = useState(urls.movieVideo)
   const { id } = useParams()
   const numericId = parseInt(id)
   const { state } = useLocation()
-  // const { dataToRender } = state || {}
 
+  console.log("state =", state);
+  
   useEffect(() => {
     if (state === 'movies') {
-      setUrl(urls.baseURL + `movie/${numericId}?language=en-US`);
+      setDetailsUrl(urls.baseURL + `movie/${numericId}?language=en-US`);
+      setRecommenUrl(urls.baseURL + `movie/${numericId}/recommendations?language=en-US&page=1`);
+      setVideoUrl(urls.baseURL + `movie/${numericId}/videos?language=en-US`);
     } else if (state === 'series') {
-      setUrl(urls.baseURL + `tv/${numericId}?language=en-US`);
+      setDetailsUrl(urls.baseURL + `tv/${numericId}?language=en-US`);
+      setRecommenUrl(urls.baseURL + `tv/${numericId}/recommendations?language=en-US&page=1`);
+      setVideoUrl(urls.baseURL + `tv/${numericId}/videos?language=en-US`);
     }
   }, [state, numericId]);
 
   //TODO: even thought it works, i have to fix the error that fetching is giving me due to race condition
+  const queryKey = ['newDetails']
+  const { isError: detailsError, isLoading: detailsLoading, data: detailsData, refetch: detailsRefetch } = useFetch(detailsUrl, queryKey)
 
-  const queryKey = ['Newdetails']
-  const { isError, isLoading, data, refetch } = useFetch(url, queryKey)
+  const queryKeyRecomm = ['newRecomm']
+  const { data: recommData, refetch: recommRefetch } = useFetch(recommendationsUrl, queryKeyRecomm)
+  
 
+  const queryKeyVideo = ['newVideo']
+  const { data: videoData, refetch: videoRefetch } = useFetch(videoUrl, queryKeyVideo)
+  
   
   useEffect(() => {
-    if (url) {
-      refetch()
+    if (detailsUrl) {
+      detailsRefetch()
+      recommRefetch()
+      videoRefetch()
     }
-  }, [url, refetch])
-  
+  }, [detailsUrl, recommendationsUrl, videoUrl, detailsRefetch, recommRefetch,videoRefetch])
+
+
   return (
     <>
       <section>
-      {isLoading && <strong>Loading data</strong>}
-      {isError && <strong>Error fetching data</strong>}
-      {data.results ? (
+      {detailsLoading && <strong>Loading data</strong>}
+      {detailsError && <strong>Error fetching data</strong>}
+      {detailsData.results ? (
               
           <Overview
-          title={data.results.title}
-          name={data.results.name}
-          backImg={data.results.backdrop_path}
-          overview={data.results.overview}
-          score={data.results.vote_average}
+            title={detailsData.results.title}
+            name={detailsData.results.name}
+            backImg={detailsData.results.backdrop_path}
+            overview={detailsData.results.overview}
+            score={detailsData.results.vote_average}
+            // videoURL={videoData.results[0].key}
         /> 
         ) : (
-          <h1>No ha fetcheado</h1>
+          null
         )}
 
       </section>
 
       <section>
-        <Recommendations />
+        <Recommendations
+          recommendations={recommData.results}
+
+        />
       </section>
 
       <section>

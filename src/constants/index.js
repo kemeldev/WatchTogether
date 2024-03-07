@@ -12,7 +12,7 @@ export const urls = {
   trendingSeries: "https://api.themoviedb.org/3/trending/tv/day?language=en-US",
 
   movieDetails: "https://api.themoviedb.org/3/movie/30500?language=en-US",
-  movieRecommendations: "https://api.themoviedb.org/3/movie/movie_id/recommendations?language=en-US&page=1",
+  movieRecommendations: "https://api.themoviedb.org/3/movie/45000/recommendations?language=en-US&page=1",
   movieVideo: "https://api.themoviedb.org/3/movie/30500/videos?language=en-US",
 
 

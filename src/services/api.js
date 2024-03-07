@@ -11,6 +11,10 @@ const OPTIONS = {
 
 // Each fetch request is going to receive a different url, and by default it fetches page 1
 export const fetchFromApi = async (url, pageParam = 1) => {
+  if (url === "") {
+    return; // return early if URL is empty
+  }
+
   try {
     const response = await fetch(`${url}&page=${pageParam}`, OPTIONS)
     if (!response.ok) {
