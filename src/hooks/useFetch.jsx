@@ -1,6 +1,36 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { fetchFromApi } from '../services/api'
 
+
+export const useDataFetched = (url, queryKey) => {
+  const {
+    data: dataMovies = [],
+    isError,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+    refetch,
+    isFetchingNextPage
+  } = useInfiniteQuery({
+    queryKey,
+    queryFn: async ({ pageParam = 1 }) =>
+      fetchFromApi(url, pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, pages) => lastPage?.nextCursor
+
+  })
+
+  return {
+    refetch,
+    fetchNextPage,
+    isLoading,
+    isError,
+    data: dataMovies.pages?.flatMap(page => page.results) ?? [],
+    hasNextPage,
+    isFetchingNextPage
+  }
+}
+
 // this functions is for infinity queries, it uses the useInfiniteQuery from ReactQuery
 export const useInfinityFetched = (url, queryKey) => {
   const {
@@ -13,7 +43,7 @@ export const useInfinityFetched = (url, queryKey) => {
     isFetchingNextPage
   } = useInfiniteQuery({
     queryKey,
-    queryFn: async ({ pageParam = 1 }) =>
+    queryFn: async ({ pageParam = 2 }) =>
       fetchFromApi(url, pageParam),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => lastPage?.nextCursor

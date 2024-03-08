@@ -13,6 +13,11 @@ function Search() {
   const [searching, setSearching] = useState(state)
   const [searchUrl, setSearchUrl] = useState(urls.popularMovies)
 
+  useEffect(() => {
+    // Scroll to the top of the page when the component is rendered
+    window.scrollTo(0, 0)
+  }, [])
+
 
   const handleSearchingChange = (tab) => {
     setSearching(tab);

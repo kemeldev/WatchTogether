@@ -47,6 +47,7 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
                       title={item.title}
                       score={item.vote_average}
                       posterImg={item.poster_path} 
+                      onClick={onclick}
                     />
                   </div>
                   </Link>

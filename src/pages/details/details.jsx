@@ -15,6 +15,11 @@ function Details() {
   const [videoUrl, setVideoUrl] = useState(urls.movieVideo)
   const { id } = useParams()
   const numericId = parseInt(id)
+
+  useEffect(() => {
+    // Scroll to the top of the page when the component is rendered
+    window.scrollTo(0, 0)
+  }, [state])
   
   useEffect(() => {
     if (newState.movieOrTV === "movies") {

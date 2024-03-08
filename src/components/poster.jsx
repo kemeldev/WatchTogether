@@ -1,5 +1,6 @@
 import { ribbonIcon, starIcon } from '../assets/icons'
 import { urlPosterImage } from '../constants'
+import PropTypes from 'prop-types';
 import './poster.css'
 
 function Poster({title, score, posterImg, name}) {
@@ -22,11 +23,14 @@ function Poster({title, score, posterImg, name}) {
             <h5>Users Score</h5>
             <h4>{userScore.toFixed(1)}</h4>
           </div>
-          <div>
+          <div className='poster_clickable'>
             <h5>Add to watchlist</h5>
             <img src={ribbonIcon} alt="ribbon icon to add movies to watchlist" />
           </div>
-          <div>
+          <div className='poster_clickable' onClick={(event) => {
+            event.preventDefault(); 
+            console.log("hi"); 
+          }}>
             <h5>Add favorites</h5>
             <img src={starIcon} alt="star icon to add movies to favorites" />
           </div>
@@ -37,5 +41,12 @@ function Poster({title, score, posterImg, name}) {
     </>
   )
 }
+
+Poster.propTypes = {
+  title: PropTypes.string,
+  score: PropTypes.number,
+  posterImg: PropTypes.string,
+  name: PropTypes.string
+};
 
 export default Poster

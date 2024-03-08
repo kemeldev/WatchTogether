@@ -21,7 +21,6 @@ function Popular() {
   const dataTosendBB= dataBreakingBad.results
   const dataTosendFrieren= dataFrieren.results
 
-
   return (
     <>
       <div className='popular_mainContainer'>
