@@ -30,6 +30,11 @@
   gap: 1.5rem;
   font-size: large;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.SearchNavbar_centerContent h3 {
+  display: none;
 }
 
 .SearchNavbar_SearchAndLogin {
@@ -73,6 +78,12 @@
 
   .SearchNavbar_centerContent ul {
     display: none;
+  }
+
+
+
+  .SearchNavbar_centerContent h3 {
+    display: block;
   }
 
   .SearchNavbar_centerContent div {

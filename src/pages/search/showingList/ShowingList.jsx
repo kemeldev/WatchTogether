@@ -19,7 +19,7 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
     if(dataToRender){
       defineMovieTV()
     }
-  }, [movieOrTV])
+  }, [movieOrTV, dataToRender])
 
   return (
     <>

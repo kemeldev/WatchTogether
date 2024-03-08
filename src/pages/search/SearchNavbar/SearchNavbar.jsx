@@ -3,8 +3,10 @@ import { hamburgerMenu, profileLogo } from '../../../assets/icons'
 import { useState } from 'react'
 import Menu from '../../../components/menu'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
-function SearchNavbar() {
+
+function SearchNavbar({handleSearchingChange}) {
   const [menuOpen , setMenuOpen] = useState(false)
   const toggleMenu = () => {
     setMenuOpen(prevMenuOpen => !prevMenuOpen);
@@ -26,13 +28,13 @@ function SearchNavbar() {
         </div>
 
         <div className='SearchNavbar_centerContent'>
-          <div >
-            WatchTogether
-          </div>
+          <Link to="/">
+            <h3>WatchTogether</h3>
+          </Link>
           <ul>
-            <li>Movies</li>
-            <li>Series</li>
-            <li>All</li>
+            <li onClick={() => handleSearchingChange('popularMovies')}>Movies</li>
+            <li onClick={() => handleSearchingChange('popularSeries')}>Series</li>
+            <li onClick={() => handleSearchingChange('trendingAll')}>All</li>
           </ul>
         </div>
 
@@ -53,5 +55,9 @@ function SearchNavbar() {
     </>
   )
 }
+
+SearchNavbar.propTypes = {
+  handleSearchingChange: PropTypes.func,
+};
 
 export default SearchNavbar

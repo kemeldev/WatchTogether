@@ -9,22 +9,22 @@ import { useFetch } from '../../hooks/useFetch'
 
 
 function Details() {
+  const { state } = useLocation()
+  const [newState] = useState(state)
   const [recommendationsUrl, setRecommenUrl] = useState(urls.movieRecommendations)
   const [videoUrl, setVideoUrl] = useState(urls.movieVideo)
   const { id } = useParams()
   const numericId = parseInt(id)
-  const { state } = useLocation()
-  console.log(state);
   
   useEffect(() => {
-    if (state.movieOrTV === "movies") {
+    if (newState.movieOrTV === "movies") {
       setRecommenUrl(urls.baseURL + `movie/${id}/recommendations?language=en-US`);
       setVideoUrl(urls.baseURL + `movie/${id}/videos?language=en-US`);
     } else {
       setRecommenUrl(urls.baseURL + `tv/${id}/recommendations?language=en-US&page=1`);
       setVideoUrl(urls.baseURL + `tv/${id}/videos?language=en-US`);
     }
-  }, [state, numericId, id]);
+  }, [newState, numericId, id]);
 
   const queryKeyRecomm = ['newRecomm']
   const { data: recommData, refetch: recommRefetch } = useFetch(recommendationsUrl, queryKeyRecomm)
@@ -40,7 +40,7 @@ function Details() {
       recommRefetch()
       videoRefetch()
     }
-  }, [state, recommendationsUrl, videoUrl, recommRefetch,videoRefetch])
+  }, [newState, recommendationsUrl, videoUrl, recommRefetch,videoRefetch])
 
 
   return (

@@ -28,13 +28,11 @@ export const fetchFromApi = async (url, pageParam = 1) => {
       // Handle case where results is an array
       results = responseData.results;
       nextCursor = Number(responseData.page) + 1;
-      console.log("fetched multiple Object called");
 
     } else {
       // Handle case where results is a single object
       results = responseData;
-      nextCursor = null; // No pagination in this case
-      console.log("fetched single Object called");
+      nextCursor = 1; // No pagination in this case
     }
 
     // const { results, page } = await response.json()

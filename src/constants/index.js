@@ -5,6 +5,8 @@ export const urlPosterImage = 'https://image.tmdb.org/t/p/w500'
 export const urls = {
   baseURL: "https://api.themoviedb.org/3/",
 
+  trendingAll: "https://api.themoviedb.org/3/trending/all/day?language=en-US",
+
   popularMovies: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
   trendingMovies: "https://api.themoviedb.org/3/trending/movie/week?language=en-US",
 

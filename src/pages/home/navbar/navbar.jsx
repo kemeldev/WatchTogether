@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
   const [menuOpen , setMenuOpen] = useState(false)
-  const series = "series"
-  const movies = "movies"
+  const series = "popularSeries"
+  const movies = "popularMovies"
   const toggleMenu = () => {
     setMenuOpen(prevMenuOpen => !prevMenuOpen);
   };
