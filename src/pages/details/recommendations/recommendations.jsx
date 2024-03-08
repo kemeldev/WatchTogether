@@ -2,23 +2,22 @@ import './recommendations.css'
 import Backdrop from '../../../components/backdrop';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 function Recommendations({recommendations}) {
-  const [movieOrTV, setMovieOrTV] = useState("movies")
-  const defineMovieTV = () =>{
-    if(recommendations.includes(item => item.title)){
-      setMovieOrTV("movies")
+  const [movieOrTV, setMovieOrTV] = useState("")
+  const defineMovieTV = useCallback(() =>{
+    const hasTitleKey = recommendations.some(item => Object.prototype.hasOwnProperty.call(item, 'title'));
+    if (hasTitleKey) {
+      setMovieOrTV("movies");
     } else {
-      setMovieOrTV("series")
+      setMovieOrTV("series");
     }
-  }
-
+  }, [recommendations])
   useEffect(() => {
-    if(recommendations){
+    if(recommendations)
       defineMovieTV()
-    }
-  }, [movieOrTV])
+  }, [movieOrTV, defineMovieTV, recommendations])
 
 
   return (
@@ -37,8 +36,9 @@ function Recommendations({recommendations}) {
             recommendations.map((item) => (
               <Link
                         to={`/details/${item.id}`}
-                        state={movieOrTV}
+                        state={{movieOrTV, item}}
                         key={item.id}
+                        onClick={()=>defineMovieTV()}
                         
                       >
                 <div key={item.id}>

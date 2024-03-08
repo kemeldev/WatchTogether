@@ -5,7 +5,7 @@ import './ShowingList.css'
 import { useEffect, useState } from 'react';
 
 function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPage, isFetchingNextPage}) {
-  const [movieOrTV, setMovieOrTV] = useState("movies")
+  const [movieOrTV, setMovieOrTV] = useState("")
   const defineMovieTV = () =>{
     const hasTitleKey = dataToRender.some(item => Object.prototype.hasOwnProperty.call(item, 'title'));
     if (hasTitleKey) {
@@ -37,7 +37,7 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
               dataToRender.map((item, index) => (
                 <Link
                           to={`/details/${item.id}`}
-                          state={movieOrTV}
+                          state={{movieOrTV, item}}
                           key={index}
                           
                         >

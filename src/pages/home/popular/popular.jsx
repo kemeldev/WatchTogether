@@ -1,9 +1,27 @@
 import { Link } from 'react-router-dom'
 import { breakingbadPoster, breakingbadwall, frierenPoster, frierenwallpaper } from '../../../assets/images'
 import './popular.css'
+import { useEffect } from 'react'
+import { urls } from '../../../constants'
+import { useFetch } from '../../../hooks/useFetch'
 
 function Popular() {
-  const series = "series"
+  const movieOrTV = "series"
+
+  const queryKeyBB = ['breakingBad']
+  const {data: dataBreakingBad, refetch: refetchBB } = useFetch(urls.seriesDetails, queryKeyBB)
+  const queryKeyFrieren = ['frieren']
+  const {data: dataFrieren, refetch: refetchFrieren } = useFetch(urls.seriesDetails2, queryKeyFrieren)
+
+  useEffect(() => {
+    refetchFrieren()
+    refetchBB()
+  }, [ refetchFrieren, refetchBB])
+
+  const dataTosendBB= dataBreakingBad.results
+  const dataTosendFrieren= dataFrieren.results
+
+
   return (
     <>
       <div className='popular_mainContainer'>
@@ -24,7 +42,7 @@ function Popular() {
               <h2>BREAKING BAD</h2>
               <Link
                   to={"/details/1396"}
-                  state={series}
+                  state={{movieOrTV, item: dataTosendBB}}
                       >
                 <button>View Details</button>
               </Link>
@@ -44,7 +62,7 @@ function Popular() {
               <h2>FRIEREN BEYOND JOURNEY’S END</h2>
               <Link
                   to={"/details/209867"}
-                  state={series}
+                  state={{movieOrTV, item : dataTosendFrieren}}
                       >
                 <button>View Details</button>
               </Link>

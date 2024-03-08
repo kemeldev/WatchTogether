@@ -8,7 +8,7 @@ import { urlBackgroundImage, urls } from '../../../constants';
 import { Link } from 'react-router-dom';
 
 function Hero() {
-  const movies = "movies"
+  const movieOrTV = "movies"
   const [url, setUrls] = useState(urls.popularMovies)
   const [activeTab, setActiveTab] = useState('Popular')
   const [backImage, setBackImage] = useState(johnWickWallpaper)
@@ -25,10 +25,11 @@ function Hero() {
   const queryKey = ['popularAndTrendingMovies']
   const { isError, isLoading, data, refetch } = useFetch(url, queryKey)
 
-  const dataToRender = data.results
+  // const dataToRender = data.results
 
-  const mouseOver = (backImage) => {
-    setBackImage(urlBackgroundImage+backImage)
+  const mouseOver = (item) => {
+    setBackImage(urlBackgroundImage+item.backdrop_path)
+    // console.log(item.id)
   }
 
   useEffect(() => {
@@ -70,14 +71,15 @@ function Hero() {
             {isLoading && <strong>Loading data</strong>}
             {isError && <strong>Error fetching data</strong>}
             {data.results && data.results.length > 0 ? (
-              data.results.map((item) => (
+              data.results.map((item) => {
+              return (
                 <Link
                         to={`/details/${item.id}`}
-                        state={movies}
+                        state={{movieOrTV, item}}
                         key={item.id}
                       >
                 <div 
-                  onMouseEnter={()=> mouseOver(item.backdrop_path)}
+                  onMouseEnter={()=> mouseOver(item)}
                 >
                   <Poster
                     title={item.title}
@@ -87,8 +89,8 @@ function Hero() {
                   />
                 </div>
                 </Link>
-              ))
-            ) : null}
+              )}
+            )) : null}
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { urls } from '../../../constants';
 import { Link } from 'react-router-dom';
 
 function Demo() {
-  const series = "series"
+  const movieOrTV = "series"
   const [url, setUrls] = useState(urls.popularSeries)
   const [activeTab, setActiveTab] = useState('Popular')
   const handleClick = (tab) => {
@@ -45,7 +45,7 @@ function Demo() {
 
                 <Link
                         to={`/details/${item.id}`}
-                        state={series}
+                        state={{movieOrTV, item}}
                         key={item.id}
                       >
                 <div key={item.id}>

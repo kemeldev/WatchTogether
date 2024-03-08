@@ -9,27 +9,22 @@ import { useFetch } from '../../hooks/useFetch'
 
 
 function Details() {
-  const [detailsUrl, setDetailsUrl] = useState(urls.movieDetails)
   const [recommendationsUrl, setRecommenUrl] = useState(urls.movieRecommendations)
-  const [videoUrl, setVideoUrl] = useState(urls.videoUrl)
+  const [videoUrl, setVideoUrl] = useState(urls.movieVideo)
   const { id } = useParams()
   const numericId = parseInt(id)
   const { state } = useLocation()
+  console.log(state);
   
   useEffect(() => {
-    if (state === 'movies') {
-      setDetailsUrl(urls.baseURL + `movie/${numericId}?language=en-US`);
-      setRecommenUrl(urls.baseURL + `movie/${numericId}/recommendations?language=en-US&page=1`);
-      setVideoUrl(urls.baseURL + `movie/${numericId}/videos?language=en-US`);
-    } else if (state === 'series') {
-      setDetailsUrl(urls.baseURL + `tv/${numericId}?language=en-US`);
-      setRecommenUrl(urls.baseURL + `tv/${numericId}/recommendations?language=en-US&page=1`);
-      setVideoUrl(urls.baseURL + `tv/${numericId}/videos?language=en-US`);
+    if (state.movieOrTV === "movies") {
+      setRecommenUrl(urls.baseURL + `movie/${id}/recommendations?language=en-US`);
+      setVideoUrl(urls.baseURL + `movie/${id}/videos?language=en-US`);
+    } else {
+      setRecommenUrl(urls.baseURL + `tv/${id}/recommendations?language=en-US&page=1`);
+      setVideoUrl(urls.baseURL + `tv/${id}/videos?language=en-US`);
     }
-  }, [state, numericId]);
-
-  const queryKey = ['newDetails']
-  const { isError: detailsError, isLoading: detailsLoading, data: detailsData, refetch: detailsRefetch } = useFetch(detailsUrl, queryKey)
+  }, [state, numericId, id]);
 
   const queryKeyRecomm = ['newRecomm']
   const { data: recommData, refetch: recommRefetch } = useFetch(recommendationsUrl, queryKeyRecomm)
@@ -41,27 +36,24 @@ function Details() {
   const filterArray = videosArray.find(item => item.type == "Trailer")
   
   useEffect(() => {
-    if (detailsUrl) {
-      detailsRefetch()
+    if (state) {
       recommRefetch()
       videoRefetch()
     }
-  }, [detailsUrl, recommendationsUrl, videoUrl, detailsRefetch, recommRefetch,videoRefetch])
+  }, [state, recommendationsUrl, videoUrl, recommRefetch,videoRefetch])
 
 
   return (
     <>
       <section>
-      {detailsLoading && <strong>Loading data</strong>}
-      {detailsError && <strong>Error fetching data</strong>}
-      {detailsData.results ? (
+      {state ? (
               
           <Overview
-            title={detailsData.results.title}
-            name={detailsData.results.name}
-            backImg={detailsData.results.backdrop_path}
-            overview={detailsData.results.overview}
-            score={detailsData.results.vote_average}
+            title={state.item?.title}
+            name={state.item?.name}
+            backImg={state.item?.backdrop_path}
+            overview={state.item?.overview}
+            score={state.item?.vote_average}
             videosArray={filterArray}
         /> 
         ) : (

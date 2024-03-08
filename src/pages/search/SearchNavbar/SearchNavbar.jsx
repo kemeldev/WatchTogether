@@ -2,6 +2,7 @@ import './SearchNavbar.css'
 import { hamburgerMenu, profileLogo } from '../../../assets/icons'
 import { useState } from 'react'
 import Menu from '../../../components/menu'
+import { Link } from 'react-router-dom'
 
 function SearchNavbar() {
   const [menuOpen , setMenuOpen] = useState(false)
@@ -14,7 +15,9 @@ function SearchNavbar() {
       <div className='SearchNavbar_mainContainer'>
 
         <div className='SearchNavbar_leftSideContent'>
-          <h3>WatchTogether</h3>
+          <Link to="/">
+            <h3>WatchTogether</h3>
+          </Link>
           <div className='SearchNavbar_hamburgerMenu'>
             <img 
             src={hamburgerMenu}

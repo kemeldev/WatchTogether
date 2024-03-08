@@ -8,14 +8,15 @@ import { useEffect, useState } from 'react'
 import { useInfinityFetched } from '../../hooks/useFetch'
 
 function Search() {
-  const [searchUrl, setSearchUrl] = useState(urls.popularMovies)
+  const [searchMovieUrl] = useState(urls.popularMovies)
 
-  const queryKey = ['search']
-  const { fetchNextPage, isError, isLoading, data, hasNextPage, isFetchingNextPage, refetch } = useInfinityFetched(searchUrl, queryKey)
+  const queryKeyMovies = ['searchMovies']
+  const { fetchNextPage: fetchNextPageMovie, isError: isErrorMovies, isLoading: isLoadingMovies, data : dataMovies, hasNextPage : hasNextPageMovies, isFetchingNextPage : isFetchingNextMovies, refetch : refetchMovies } = useInfinityFetched(searchMovieUrl, queryKeyMovies)
+  
 
   useEffect(() => {
-    refetch()
-  }, [searchUrl, refetch])
+    refetchMovies()
+  }, [searchMovieUrl, refetchMovies])
 
 
   return (
@@ -27,12 +28,12 @@ function Search() {
       <section className='search_paramsAndList'>
         <SearchParameters />
         <ShowingList 
-          isLoading={isLoading}
-          isError={isError}
-          dataToRender={data}
-          fetchNextPage={fetchNextPage}
-          hasNextPage={hasNextPage}
-          isisFetchingNextPage={isFetchingNextPage}
+          isLoading={isLoadingMovies}
+          isError={isErrorMovies}
+          dataToRender={dataMovies}
+          fetchNextPage={fetchNextPageMovie}
+          hasNextPage={hasNextPageMovies}
+          isisFetchingNextPage={isFetchingNextMovies}
         />
       </section>
 

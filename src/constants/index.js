@@ -13,10 +13,11 @@ export const urls = {
 
   movieDetails: "https://api.themoviedb.org/3/movie/30500?language=en-US",
   movieRecommendations: "https://api.themoviedb.org/3/movie/45000/recommendations?language=en-US&page=1",
-  movieVideo: "https://api.themoviedb.org/3/movie/30500/videos?language=en-US",
+  movieVideo: "https://api.themoviedb.org/3/movie/693134/videos?language=en-US",
 
 
-  seriesDetails: "https://api.themoviedb.org/3/tv/357?language=en-US",
+  seriesDetails: "https://api.themoviedb.org/3/tv/1396?language=en-US",
+  seriesDetails2: "https://api.themoviedb.org/3/tv/209867?language=en-US",
   seriesRecommendations: "https://api.themoviedb.org/3/tv/357/recommendations?language=en-US&page=1",
   serieVideo: "https://api.themoviedb.org/3/tv/series_id/videos?language=en-US",
 

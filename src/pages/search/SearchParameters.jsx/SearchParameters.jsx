@@ -3,9 +3,9 @@ import { chevronRight } from '../../../assets/icons'
 import { useState } from 'react'
 
 function SearchParameters() {
-  const [searchOpen, setSearchOpen] = useState(true)
-  const [sortOpen, setSortOpen] = useState(true)
-  const [quickOpen, setQuickOpen] = useState(true)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [sortOpen, setSortOpen] = useState(false)
+  const [quickOpen, setQuickOpen] = useState(false)
 
   return (
     <>
