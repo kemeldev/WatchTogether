@@ -25,6 +25,20 @@
 
 }
 
+.list_btn {
+  width: 100%;
+  color: white;
+  background-color: #100d22;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  font-size: 22px;
+  border: solid white 2px;
+}
+
 @media screen and (max-width: 750px) {
   .ShowingList_mainContainer {
     width: 100%;

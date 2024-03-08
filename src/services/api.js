@@ -34,7 +34,6 @@ export const fetchFromApi = async (url, pageParam = 1) => {
       nextCursor = null; // No pagination in this case
     }
 
-
     // const { results, page } = await response.json()
     // // this next cursor is to be used with ReactQuery for infinity queries if needed
     // const nextCursor = Number(page + 1)

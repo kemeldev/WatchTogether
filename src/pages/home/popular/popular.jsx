@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import { breakingbadPoster, breakingbadwall, frierenPoster, frierenwallpaper } from '../../../assets/images'
 import './popular.css'
 
 function Popular() {
-
+  const series = "series"
   return (
     <>
       <div className='popular_mainContainer'>
@@ -21,7 +22,12 @@ function Popular() {
               <h3>Find immersive, funny, thrilling, and suspensefull experiences. No matter your preference, you’ll find the right choice</h3>
 
               <h2>BREAKING BAD</h2>
-              <button>View Details</button>
+              <Link
+                  to={"/details/1396"}
+                  state={series}
+                      >
+                <button>View Details</button>
+              </Link>
             </div>
           </article>
 
@@ -36,7 +42,12 @@ function Popular() {
             <div className='popular_textContent'>
               <h3>Discover new and exiting fantasy worlds</h3>
               <h2>FRIEREN BEYOND JOURNEY’S END</h2>
-              <button>View Details</button>
+              <Link
+                  to={"/details/209867"}
+                  state={series}
+                      >
+                <button>View Details</button>
+              </Link>
             </div>
             <div className='popular_posterImage'>
               <img src={frierenPoster} alt="poster image of a serie" />

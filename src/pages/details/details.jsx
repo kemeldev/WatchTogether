@@ -9,14 +9,12 @@ import { useFetch } from '../../hooks/useFetch'
 
 
 function Details() {
-  const [detailsUrl, setDetailsUrl] = useState("")
+  const [detailsUrl, setDetailsUrl] = useState(urls.movieDetails)
   const [recommendationsUrl, setRecommenUrl] = useState(urls.movieRecommendations)
-  const [videoUrl, setVideoUrl] = useState(urls.movieVideo)
+  const [videoUrl, setVideoUrl] = useState(urls.videoUrl)
   const { id } = useParams()
   const numericId = parseInt(id)
   const { state } = useLocation()
-
-  console.log("state =", state);
   
   useEffect(() => {
     if (state === 'movies') {
@@ -30,17 +28,17 @@ function Details() {
     }
   }, [state, numericId]);
 
-  //TODO: even thought it works, i have to fix the error that fetching is giving me due to race condition
   const queryKey = ['newDetails']
   const { isError: detailsError, isLoading: detailsLoading, data: detailsData, refetch: detailsRefetch } = useFetch(detailsUrl, queryKey)
 
   const queryKeyRecomm = ['newRecomm']
   const { data: recommData, refetch: recommRefetch } = useFetch(recommendationsUrl, queryKeyRecomm)
-  
 
   const queryKeyVideo = ['newVideo']
   const { data: videoData, refetch: videoRefetch } = useFetch(videoUrl, queryKeyVideo)
-  
+
+  const videosArray = videoData.results ?? [];
+  const filterArray = videosArray.find(item => item.type == "Trailer")
   
   useEffect(() => {
     if (detailsUrl) {
@@ -64,7 +62,7 @@ function Details() {
             backImg={detailsData.results.backdrop_path}
             overview={detailsData.results.overview}
             score={detailsData.results.vote_average}
-            // videoURL={videoData.results[0].key}
+            videosArray={filterArray}
         /> 
         ) : (
           null

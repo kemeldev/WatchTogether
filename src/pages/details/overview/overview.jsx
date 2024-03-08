@@ -5,7 +5,7 @@ import './overview.css'
 import PropTypes from 'prop-types';
 import PlayTrailer from '../../../components/PlayTrailer';
 
-function Overview({title, name, overview, score, backImg, videoURL}) {
+function Overview({title, name, overview, score, backImg, videosArray}) {
 
   const [videoActive, setVideoActive] = useState(false)
   const handleVideo = () => {
@@ -14,6 +14,11 @@ function Overview({title, name, overview, score, backImg, videoURL}) {
 
   const userScore = Math.ceil(score * 10) / 10;
   const displayTitle = title || name;
+
+  const videoKey = ()=>{
+    if (videosArray) return videosArray.key
+    else return null
+  }
 
   return (
     <>
@@ -27,8 +32,11 @@ function Overview({title, name, overview, score, backImg, videoURL}) {
           <article className='overview_description'>
             <div className='overview_title'>
               <h2>{displayTitle}</h2>
+              {videoKey() && <>
               <img onClick={handleVideo} src={playIcon} alt="play button icon" />
               <h3>Play Trailer</h3>
+              </>
+              }
             </div>
             <div>
               <h3>Overview</h3>
@@ -54,7 +62,7 @@ function Overview({title, name, overview, score, backImg, videoURL}) {
         {videoActive &&
           <PlayTrailer 
             handleVideo={handleVideo}
-            videoURL={videoURL}
+            videoURL={videoKey()}
           />
         }
 
@@ -71,7 +79,7 @@ Overview.propTypes = {
   overview: PropTypes.string, 
   score: PropTypes.number,
   backImg: PropTypes.string, 
-  videoURL: PropTypes.string,
+  videosArray: PropTypes.object,
 };
 
 export default Overview

@@ -36,6 +36,15 @@ body {
 
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
 /* CSS to hide video controls */
 .video-element::-webkit-media-controls {
   display: none !important;

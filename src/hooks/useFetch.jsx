@@ -2,7 +2,7 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { fetchFromApi } from '../services/api'
 
 // this functions is for infinity queries, it uses the useInfiniteQuery from ReactQuery
-export const usedDataFetched = (url, queryKey) => {
+export const useInfinityFetched = (url, queryKey) => {
   const {
     data: dataMovies = [],
     isError,

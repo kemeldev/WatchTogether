@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function Recommendations({recommendations}) {
-  const [movieOrTV, setMovieOrTV] = useState("movie")
+  const [movieOrTV, setMovieOrTV] = useState("movies")
   const defineMovieTV = () =>{
     if(recommendations.includes(item => item.title)){
       setMovieOrTV("movies")

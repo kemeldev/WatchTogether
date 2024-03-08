@@ -2,9 +2,12 @@ import './navbar.css'
 import { hamburgerMenu, profileLogo, glassMagnifier } from '../../../assets/icons'
 import { useState } from 'react'
 import Menu from '../../../components/menu'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   const [menuOpen , setMenuOpen] = useState(false)
+  const series = "series"
+  const movies = "movies"
   const toggleMenu = () => {
     setMenuOpen(prevMenuOpen => !prevMenuOpen);
   };
@@ -27,9 +30,12 @@ function Navbar() {
             WatchTogether
           </div>
           <ul>
-            <li>Movies</li>
-            <li>Series</li>
-            <li>People</li>
+            <Link to={"/search"} state={movies}>
+              <li>Movies</li>
+            </Link>
+            <Link to={"/search"} state={series}>
+              <li>Series</li>
+            </Link>
           </ul>
         </div>
 
