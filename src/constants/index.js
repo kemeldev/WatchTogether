@@ -23,5 +23,6 @@ export const urls = {
   seriesRecommendations: "https://api.themoviedb.org/3/tv/357/recommendations?language=en-US",
   serieVideo: "https://api.themoviedb.org/3/tv/series_id/videos?language=en-US",
 
-  multiSearch: "https://api.themoviedb.org/3/search/multi?query=avengers&include_adult=false&language=en-US&page=1"
+  multiSearch: "https://api.themoviedb.org/3/search/multi?query=",
+  multiSearchExample: "https://api.themoviedb.org/3/search/multi?query=avengers&include_adult=false&language=en-US"
 }

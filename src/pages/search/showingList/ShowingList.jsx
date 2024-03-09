@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './ShowingList.css'
 import { useEffect, useState } from 'react';
 
-function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPage, isFetchingNextPage}) {
+function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPage, isFetchingNextPage, nowShowing}) {
   const [movieOrTV, setMovieOrTV] = useState("")
   const defineMovieTV = () =>{
     const hasTitleKey = dataToRender.some(item => Object.prototype.hasOwnProperty.call(item, 'title'));
@@ -26,7 +26,7 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
       <div className='ShowingList_mainContainer'>
 
         <div>
-          <h2>NOW SHOWING:  <span>Variable</span></h2>
+          <h2>NOW SHOWING:  <span>{nowShowing}</span></h2>
         </div>
 
         <div className='list_container'>
@@ -80,7 +80,8 @@ ShowingList.propTypes = {
   hasNextPage: PropTypes.bool,
   isFetchingNextPage: PropTypes.bool,
   dataToRender: PropTypes.array,
-  fetchNextPage: PropTypes.func
+  fetchNextPage: PropTypes.func,
+  nowShowing: PropTypes.string
 };
 
 

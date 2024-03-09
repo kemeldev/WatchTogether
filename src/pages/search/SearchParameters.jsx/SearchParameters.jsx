@@ -1,11 +1,49 @@
 import './SearchParameters.css'
 import { chevronRight } from '../../../assets/icons'
 import { useState } from 'react'
+import PropTypes from 'prop-types';
 
-function SearchParameters() {
+function SearchParameters({handleSearchSubmit, searchFormError}) {
   const [searchOpen, setSearchOpen] = useState(false)
   const [sortOpen, setSortOpen] = useState(false)
   const [quickOpen, setQuickOpen] = useState(false)
+
+  const [sortNameChecked, setSortNameChecked] = useState(false);
+  const [sortRateChecked, setSortRateChecked] = useState(false);
+  const [sortYearChecked, setSortYearChecked] = useState(false);
+
+  // logic to unchecked boxes
+  const handleSortChange = (name) => {
+    // If the checkbox is clicked again, uncheck it and return early
+    if (
+      (name === 'sortName' && sortNameChecked) ||
+      (name === 'sortRate' && sortRateChecked) ||
+      (name === 'sortYear' && sortYearChecked)
+    ) {
+      setSortNameChecked(false);
+      setSortRateChecked(false);
+      setSortYearChecked(false);
+      return;
+    }
+  
+    // Update the state based on which checkbox is clicked
+    if (name === 'sortName') {
+      setSortNameChecked(true);
+      setSortRateChecked(false);
+      setSortYearChecked(false);
+      // Apply method for sortName
+    } else if (name === 'sortRate') {
+      setSortRateChecked(true);
+      setSortNameChecked(false);
+      setSortYearChecked(false);
+      // Apply method for sortRate
+    } else if (name === 'sortYear') {
+      setSortYearChecked(true);
+      setSortNameChecked(false);
+      setSortRateChecked(false);
+      // Apply method for sortYear
+    }
+  };
 
   return (
     <>
@@ -13,9 +51,10 @@ function SearchParameters() {
 
         <div className='SearchParameters_paramsContainer'>
 
+          {/* Search form */}
           <div className='SearchParameters_searchContainer'>
             <div className='SearchP_title' onClick={()=>setSearchOpen(!searchOpen)}>
-              <h3>Search</h3>
+              <h3>Search Any</h3>
               <img 
                 src={chevronRight}
                 className={!searchOpen ? 'return' : 'rotate-chevron'}
@@ -24,17 +63,21 @@ function SearchParameters() {
             </div>
             <div className={searchOpen ? "SearchP_search searchOpen" : "SearchP_search"}>
               <hr />
-              <form action="/">
-                <label htmlFor="search"></label>
-                <input type="text" name='search'  />
+              <form onSubmit={handleSearchSubmit} method='get'>
+                <label htmlFor="specificSearch"></label>
+                <input type="text" name='specificSearch' placeholder='Avengers, Friends etc'  />
+                <div className='searchForm_error'>
+                  {searchFormError && searchFormError}
+                </div>
                 <button>Search</button>
               </form>
             </div>
           </div>
 
+          {/* SortBy form */} 
           <div className='SearchParameters_SortBy'>
             <div className='SearchP_title' onClick={()=>setSortOpen(!sortOpen)}>
-                <h3>Sort By</h3>
+                <h3>Sort current list By</h3>
                 <img 
                   src={chevronRight}
                   className={!sortOpen ? 'return' : 'rotate-chevron'}
@@ -43,26 +86,27 @@ function SearchParameters() {
             </div>
             <div className={`SearchP_sort ${sortOpen ? 'sortOpen' : ''}`}>
             <hr />
-            <form>
+            <form method='get' >
               <div className="sortItem">
                 <label htmlFor="sortName">Name (A-Z)</label>
-                <input type="checkbox" id="sortName" name='sortName'/>
+                <input type="checkbox" id="sortName" name='sortName' checked={sortNameChecked} onChange={() => handleSortChange('sortName')}/>
               </div>
               <div className="sortItem">
-              <label htmlFor="sortRate">Top Rated</label>
-              <input type="checkbox" id="sortRate" name='sortRate'/>
+                <label htmlFor="sortRate">Top Rated</label>
+                <input type="checkbox" id="sortRate" name='sortRate' checked={sortRateChecked} onChange={() => handleSortChange('sortRate')}/>
               </div>
               <div className="sortItem">
-              <label htmlFor="sortYear">Released Year</label>
-              <input type="checkbox" id="sortYear" name='sortYear'/>
+                <label htmlFor="sortYear">Released Year</label>
+                <input type="checkbox" id="sortYear" name='sortYear' checked={sortYearChecked} onChange={() => handleSortChange('sortYear')}/>
               </div>
             </form>
             </div>
           </div>
 
+          {/* QuickSearch form */}
           <div className='SearchParameters_QuickSearch'>
             <div className='SearchP_title' onClick={()=>setQuickOpen(!quickOpen)}>
-                  <h3>Quick Search</h3>
+                  <h3>Quick Search Parameters</h3>
                   <img 
                     src={chevronRight}
                     className={!quickOpen ? 'return' : 'rotate-chevron'}
@@ -74,11 +118,11 @@ function SearchParameters() {
             <form>
               <div className="quickItem">
                 <label htmlFor="quickName">Trending</label>
-                <input type="checkbox" id="quickName" name='quickName'/>
+                <input type="checkbox" id="quickName" name='quickName' />
               </div>
               <div className="quickItem">
                 <label htmlFor="quickRate">Top Rated</label>
-                <input type="checkbox" id="quickRate" name='quickRate'/>
+                <input type="checkbox" id="quickRate" name='quickRate' />
               </div>
               <div className="quickItem">
                 <label htmlFor="quickYear">Popular</label>
@@ -106,5 +150,11 @@ function SearchParameters() {
     </>
   )
 }
+
+SearchParameters.propTypes = {
+  handleSearchSubmit: PropTypes.func,
+  searchFormError: PropTypes.string,
+  handleSortChange: PropTypes.func,
+};
 
 export default SearchParameters
