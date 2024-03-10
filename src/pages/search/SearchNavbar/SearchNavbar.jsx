@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 
-function SearchNavbar({handleSearchingChange}) {
+function SearchNavbar({handleSearchingChange, sortedDatatoNull}) {
   const [menuOpen , setMenuOpen] = useState(false)
   const toggleMenu = () => {
     setMenuOpen(prevMenuOpen => !prevMenuOpen);
@@ -32,7 +32,7 @@ function SearchNavbar({handleSearchingChange}) {
             <h3>WatchTogether</h3>
           </Link>
           <ul>
-            <li onClick={() => handleSearchingChange('popularMovies')}>Movies</li>
+            <li onClick={() =>{sortedDatatoNull(), handleSearchingChange('popularMovies')}}>Movies</li>
             <li onClick={() => handleSearchingChange('popularSeries')}>Series</li>
             <li onClick={() => handleSearchingChange('trendingAll')}>All</li>
           </ul>

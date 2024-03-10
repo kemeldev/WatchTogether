@@ -4,22 +4,28 @@ import PropTypes from 'prop-types';
 import './ShowingList.css'
 import { useEffect, useState } from 'react';
 
-function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPage, isFetchingNextPage, nowShowing}) {
+function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPage, isFetchingNextPage, nowShowing, sortedData}) {
   const [movieOrTV, setMovieOrTV] = useState("")
+  const [renderSortedData, setRenderSortedData] = useState(false);
+
   const defineMovieTV = () =>{
     const hasTitleKey = dataToRender.some(item => Object.prototype.hasOwnProperty.call(item, 'title'));
-    if (hasTitleKey) {
-      setMovieOrTV("movies");
-    } else {
-      setMovieOrTV("series");
-    }
+    if (hasTitleKey) setMovieOrTV("movies")
+    else setMovieOrTV("series")
   }
+
+  useEffect(() => {
+    if (sortedData.length > 0) setRenderSortedData(true)
+    else setRenderSortedData(false)
+  }, [sortedData]);
 
   useEffect(() => {
     if(dataToRender){
       defineMovieTV()
     }
   }, [movieOrTV, dataToRender])
+
+
 
   return (
     <>
@@ -33,8 +39,8 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
           <div className='list_grid'>
             {isLoading && <strong>Loading data</strong>}
             {isError && <strong>Error fetching data</strong>}
-            {dataToRender && dataToRender.length > 0 ? (
-              dataToRender.map((item, index) => (
+            {(renderSortedData ? sortedData : dataToRender) && (renderSortedData ? sortedData : dataToRender).length > 0 ? (
+            (renderSortedData ? sortedData : dataToRender).map((item, index) => (
                 <Link
                           to={`/details/${item.id}`}
                           state={{movieOrTV, item}}
@@ -81,7 +87,8 @@ ShowingList.propTypes = {
   isFetchingNextPage: PropTypes.bool,
   dataToRender: PropTypes.array,
   fetchNextPage: PropTypes.func,
-  nowShowing: PropTypes.string
+  nowShowing: PropTypes.string,
+  sortedData: PropTypes.any,
 };
 
 

@@ -15,6 +15,7 @@ function Search() {
   const [searchUrl, setSearchUrl] = useState(urls.popularMovies)
   const [searchMulti] = useState(urls.multiSearch)
   const [searchFormError, setSearchFormError] = useState('')
+  const [sortedData, setSortedData] = useState([])
 
   useEffect(() => {
     // Scroll to the top of the page when the component is rendered
@@ -47,10 +48,7 @@ function Search() {
     }
   }
 
-  //sortBy funtion
-  const handleSortChange = async () => {
-    
-  }
+  
 
   // function to change the searching state when click on the navbar, and therefore trigger the refetch
   const handleSearchingChange = (tab) => {
@@ -87,16 +85,45 @@ function Search() {
         setNowShowing("Movies and Series") }
   }, [state])
 
-  console.log(nowShowing);
-  console.log(state);
 
   // Fetch hook implemented
   const queryKeySearch = ['search']
   const { fetchNextPage, isError, isLoading, data, hasNextPage, isFetchingNextPage, refetch} = useInfinityFetched(searchUrl, queryKeySearch)
+
+  //sortBy funtion
+  function handleSortChange() {
+   const newArray = data.sort((a, b) => {
+        const nameA = a.name || a.title;
+        const nameB = b.name || b.title;
+        return nameA.localeCompare(nameB);
+    });
+    setSortedData(newArray);
+}
+
+    const sortedDatatoNull = () => {
+      setSortedData([]);
+    }
+
+    const sortByRank= () => {
+      return setSortedData(data?.sort((a, b) =>  b.vote_average - a.vote_average))
+    };
+
+    const sortByReleasedYear = () => {
+      const sortedDataCopy = [...data];
+      sortedDataCopy.sort((a, b) => {
+          const yearA = 'release_date' in a ? parseInt(a.release_date.substring(0, 4)) : parseInt(a.first_air_date.substring(0, 4));
+          const yearB = 'release_date' in b ? parseInt(b.release_date.substring(0, 4)) : parseInt(b.first_air_date.substring(0, 4));
+          
+          return yearB - yearA;
+      });
+  
+      setSortedData(sortedDataCopy);
+  };
   
 
   useEffect(() => {
     refetch()
+    
   }, [searchUrl, refetch])
 
   
@@ -107,6 +134,7 @@ function Search() {
       <section>
         <SearchNavbar
           handleSearchingChange={handleSearchingChange}
+          sortedDatatoNull={sortedDatatoNull}
         />
       </section>
 
@@ -115,6 +143,9 @@ function Search() {
             handleSearchSubmit={handleSearchSubmit}
             searchFormError={searchFormError}
             handleSortChange={handleSortChange}
+            sortByRank={sortByRank}
+            sortByReleasedYear={sortByReleasedYear}
+            sortedDatatoNull={sortedDatatoNull}
 
         />
         <ShowingList 
@@ -122,6 +153,7 @@ function Search() {
           isLoading={isLoading}
           isError={isError}
           dataToRender={data}
+          sortedData={sortedData}
           fetchNextPage={fetchNextPage}
           hasNextPage={hasNextPage}
           isisFetchingNextPage={isFetchingNextPage}

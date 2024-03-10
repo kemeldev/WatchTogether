@@ -3,7 +3,7 @@ import { chevronRight } from '../../../assets/icons'
 import { useState } from 'react'
 import PropTypes from 'prop-types';
 
-function SearchParameters({handleSearchSubmit, searchFormError}) {
+function SearchParameters({handleSearchSubmit, searchFormError, handleSortChange, sortedDatatoNull, sortByRank, sortByReleasedYear}) {
   const [searchOpen, setSearchOpen] = useState(false)
   const [sortOpen, setSortOpen] = useState(false)
   const [quickOpen, setQuickOpen] = useState(false)
@@ -13,7 +13,7 @@ function SearchParameters({handleSearchSubmit, searchFormError}) {
   const [sortYearChecked, setSortYearChecked] = useState(false);
 
   // logic to unchecked boxes
-  const handleSortChange = (name) => {
+  const handleCheckboxChange = (name) => {
     // If the checkbox is clicked again, uncheck it and return early
     if (
       (name === 'sortName' && sortNameChecked) ||
@@ -23,6 +23,7 @@ function SearchParameters({handleSearchSubmit, searchFormError}) {
       setSortNameChecked(false);
       setSortRateChecked(false);
       setSortYearChecked(false);
+      sortedDatatoNull()
       return;
     }
   
@@ -89,15 +90,15 @@ function SearchParameters({handleSearchSubmit, searchFormError}) {
             <form method='get' >
               <div className="sortItem">
                 <label htmlFor="sortName">Name (A-Z)</label>
-                <input type="checkbox" id="sortName" name='sortName' checked={sortNameChecked} onChange={() => handleSortChange('sortName')}/>
+                <input type="checkbox" id="sortName" name='sortName' checked={sortNameChecked} onChange={() => {handleSortChange(), handleCheckboxChange('sortName')}}/>
               </div>
               <div className="sortItem">
                 <label htmlFor="sortRate">Top Rated</label>
-                <input type="checkbox" id="sortRate" name='sortRate' checked={sortRateChecked} onChange={() => handleSortChange('sortRate')}/>
+                <input type="checkbox" id="sortRate" name='sortRate' checked={sortRateChecked} onChange={() => { sortByRank(), handleCheckboxChange('sortRate')}}/>
               </div>
               <div className="sortItem">
                 <label htmlFor="sortYear">Released Year</label>
-                <input type="checkbox" id="sortYear" name='sortYear' checked={sortYearChecked} onChange={() => handleSortChange('sortYear')}/>
+                <input type="checkbox" id="sortYear" name='sortYear' checked={sortYearChecked} onChange={() => { sortByReleasedYear(), handleCheckboxChange('sortYear')}}/>
               </div>
             </form>
             </div>
@@ -155,6 +156,9 @@ SearchParameters.propTypes = {
   handleSearchSubmit: PropTypes.func,
   searchFormError: PropTypes.string,
   handleSortChange: PropTypes.func,
+  sortedDatatoNull: PropTypes.func,
+  sortByReleasedYear: PropTypes.func,
+  sortByRank: PropTypes.func,
 };
 
 export default SearchParameters
