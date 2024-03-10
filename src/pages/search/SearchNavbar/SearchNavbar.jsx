@@ -33,8 +33,8 @@ function SearchNavbar({handleSearchingChange, sortedDatatoNull}) {
           </Link>
           <ul>
             <li onClick={() =>{sortedDatatoNull(), handleSearchingChange('popularMovies')}}>Movies</li>
-            <li onClick={() => handleSearchingChange('popularSeries')}>Series</li>
-            <li onClick={() => handleSearchingChange('trendingAll')}>All</li>
+            <li onClick={() =>{sortedDatatoNull(), handleSearchingChange('popularSeries')}}>Series</li>
+            <li onClick={() =>{sortedDatatoNull(), handleSearchingChange('trendingAll')}}>All</li>
           </ul>
         </div>
 
@@ -58,6 +58,7 @@ function SearchNavbar({handleSearchingChange, sortedDatatoNull}) {
 
 SearchNavbar.propTypes = {
   handleSearchingChange: PropTypes.func,
+  sortedDatatoNull: PropTypes.func,
 };
 
 export default SearchNavbar

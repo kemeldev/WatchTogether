@@ -4,7 +4,7 @@ import SearchParameters from './SearchParameters.jsx/SearchParameters'
 import './search.css'
 import ShowingList from './showingList/ShowingList'
 import { urls } from '../../constants'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useInfinityFetched } from '../../hooks/useFetch'
 import { useLocation } from 'react-router-dom'
 
@@ -16,6 +16,7 @@ function Search() {
   const [searchMulti] = useState(urls.multiSearch)
   const [searchFormError, setSearchFormError] = useState('')
   const [sortedData, setSortedData] = useState([])
+  const [dataToRender, setDataToRender] = useState([])
 
   useEffect(() => {
     // Scroll to the top of the page when the component is rendered
@@ -47,8 +48,6 @@ function Search() {
       setSearchUrl(searchMulti+dataToSearch+"&include_adult=false&language=en-US")
     }
   }
-
-  
 
   // function to change the searching state when click on the navbar, and therefore trigger the refetch
   const handleSearchingChange = (tab) => {
@@ -83,6 +82,7 @@ function Search() {
       if(state === "trendingAll") {
         setSearchUrl(urls.trendingMovies) 
         setNowShowing("Movies and Series") }
+      
   }, [state])
 
 
@@ -90,40 +90,47 @@ function Search() {
   const queryKeySearch = ['search']
   const { fetchNextPage, isError, isLoading, data, hasNextPage, isFetchingNextPage, refetch} = useInfinityFetched(searchUrl, queryKeySearch)
 
+  // Apply the filter directly to data when it's fetched
+  const filteredData = useMemo(() => {
+    if (!data) return [];
+    return data.filter(item => item.poster_path != null);
+  }, [data]);
+
   //sortBy funtion
   function handleSortChange() {
-   const newArray = data.sort((a, b) => {
+    const newArray = filteredData.sort((a, b) => {
         const nameA = a.name || a.title;
         const nameB = b.name || b.title;
         return nameA.localeCompare(nameB);
     });
     setSortedData(newArray);
-}
+  }
 
-    const sortedDatatoNull = () => {
-      setSortedData([]);
-    }
+  console.log(isLoading);
 
-    const sortByRank= () => {
-      return setSortedData(data?.sort((a, b) =>  b.vote_average - a.vote_average))
-    };
+  const sortedDatatoNull = () => {
+    setSortedData([]);
+  }
 
-    const sortByReleasedYear = () => {
-      const sortedDataCopy = [...data];
-      sortedDataCopy.sort((a, b) => {
-          const yearA = 'release_date' in a ? parseInt(a.release_date.substring(0, 4)) : parseInt(a.first_air_date.substring(0, 4));
-          const yearB = 'release_date' in b ? parseInt(b.release_date.substring(0, 4)) : parseInt(b.first_air_date.substring(0, 4));
-          
-          return yearB - yearA;
-      });
-  
-      setSortedData(sortedDataCopy);
+  const sortByRank= () => {
+    return setSortedData(filteredData?.sort((a, b) =>  b.vote_average - a.vote_average))
+  };
+
+  const sortByReleasedYear = () => {
+    const sortedDataCopy = [...filteredData];
+    sortedDataCopy.sort((a, b) => {
+        const yearA = 'release_date' in a ? parseInt(a.release_date.substring(0, 4)) : parseInt(a.first_air_date.substring(0, 4));
+        const yearB = 'release_date' in b ? parseInt(b.release_date.substring(0, 4)) : parseInt(b.first_air_date.substring(0, 4));
+        
+        return yearB - yearA;
+    });
+
+    setSortedData(sortedDataCopy);
   };
   
 
   useEffect(() => {
     refetch()
-    
   }, [searchUrl, refetch])
 
   
@@ -148,11 +155,11 @@ function Search() {
             sortedDatatoNull={sortedDatatoNull}
 
         />
-        <ShowingList 
+        <ShowingList
           nowShowing={nowShowing}
           isLoading={isLoading}
           isError={isError}
-          dataToRender={data}
+          dataToRender={filteredData}
           sortedData={sortedData}
           fetchNextPage={fetchNextPage}
           hasNextPage={hasNextPage}

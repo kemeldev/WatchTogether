@@ -7,12 +7,19 @@ import { useEffect, useState } from 'react';
 function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPage, isFetchingNextPage, nowShowing, sortedData}) {
   const [movieOrTV, setMovieOrTV] = useState("")
   const [renderSortedData, setRenderSortedData] = useState(false);
-
+  // const [filteredData, setFilteredData] = useState([])
+  
   const defineMovieTV = () =>{
     const hasTitleKey = dataToRender.some(item => Object.prototype.hasOwnProperty.call(item, 'title'));
     if (hasTitleKey) setMovieOrTV("movies")
     else setMovieOrTV("series")
   }
+
+  // const removeNullPosters = () => {
+  //   const filterData = [...dataToRender]
+  //   const newData = filterData.filter(item => item.poster_path != null)
+  //   setFilteredData(newData)
+  // }
 
   useEffect(() => {
     if (sortedData.length > 0) setRenderSortedData(true)
@@ -22,9 +29,9 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
   useEffect(() => {
     if(dataToRender){
       defineMovieTV()
+      // removeNullPosters()
     }
   }, [movieOrTV, dataToRender])
-
 
 
   return (

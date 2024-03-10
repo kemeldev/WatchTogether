@@ -16,7 +16,7 @@ export const useDataFetched = (url, queryKey) => {
     queryFn: async ({ pageParam = 1 }) =>
       fetchFromApi(url, pageParam),
     initialPageParam: 1,
-    getNextPageParam: (lastPage, pages) => lastPage?.nextCursor
+    getNextPageParam: (lastPage, allPages) => lastPage?.nextCursor
 
   })
 
