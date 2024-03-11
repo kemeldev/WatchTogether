@@ -6,8 +6,10 @@ import './hero.css'
 import { useFetch } from '../../../hooks/useFetch';
 import { urlBackgroundImage, urls } from '../../../constants';
 import { Link } from 'react-router-dom';
+import useMovieStore from '../../../store/movieStore';
 
 function Hero() {
+ 
   const movieOrTV = "movies"
   const [url, setUrls] = useState(urls.popularMovies)
   const [activeTab, setActiveTab] = useState('Popular')
@@ -82,6 +84,7 @@ function Hero() {
                   onMouseEnter={()=> mouseOver(item)}
                 >
                   <Poster
+                    item={item}
                     title={item.title}
                     score={item.vote_average}
                     posterImg={item.poster_path} 

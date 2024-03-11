@@ -18,6 +18,30 @@
   margin: 0;
 }
 
+.menu_mainContainer ul h4 {
+  position: relative;
+  cursor: pointer;
+}
+
+.menu_mainContainer ul h4::after {
+  content: "";
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: white;
+  right: 30%;
+  top: 30%;
+  border-radius: 50%;
+}
+
+.menu_mainContainer ul h4:hover {
+  color: yellowgreen;
+}
+
+.menu_mainContainer ul h4:hover::after {
+  background-color: yellowgreen;
+}
+
 .menu_mainContainer h3 {
   padding: 0.3rem;
   margin: 0;

@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import './PlayTrailer.css'
 
-function PlayTrailer({videoURL, handleVideo}) {
+function PlayTrailer({videoURL, handleVideo, videoRef}) {
   
 
   return (
     <>
       <div className='playTrailer_mainContainer'>
         <iframe
+          ref={videoRef}
           title="YouTube Video"
           width="50%"
           height="50%"
@@ -25,6 +26,7 @@ function PlayTrailer({videoURL, handleVideo}) {
 PlayTrailer.propTypes = {
   videoURL: PropTypes.string, 
   handleVideo: PropTypes.func,
+  videoRef: PropTypes.object,
 };
 
 export default PlayTrailer

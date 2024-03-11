@@ -1,8 +1,13 @@
 import { closeX } from '../assets/icons'
 import PropTypes from 'prop-types';
 import './menu.css'
+import { Link } from 'react-router-dom';
 
 function Menu({menuOpen, toggleMenu }) {
+  const popularSeries = "popularSeries"
+  const popularMovies = "popularMovies"
+  const trendingSeries = "trendingSeries"
+  const trendingMovies = "trendingMovies"
 
   return (
     <>
@@ -18,16 +23,25 @@ function Menu({menuOpen, toggleMenu }) {
 
         <ul>
           <li><h3>MOVIES</h3></li>
-          <li><h4>Popular</h4></li>
-          <li><h4>Trending</h4></li>
+          <Link to={"/search"} state={popularMovies}>
+              <li><h4>Popular</h4></li>
+          </Link>
+          
+          <Link to={"/search"} state={trendingMovies}>
+              <li><h4>Trending</h4></li>
+          </Link>
 
           <li><h3>SERIES</h3></li>
-          <li><h4>Popular</h4></li>
-          <li><h4>Trending</h4></li>
+          <Link to={"/search"} state={popularSeries}>
+              <li><h4>Popular</h4></li>
+          </Link>
+          <Link to={"/search"} state={trendingSeries}>
+              <li><h4>Trending</h4></li>
+          </Link>
 
-          <li><h3>LOGIN</h3></li>
-          <li><h3>WATCHLIST</h3></li>
-          <li><h3>FAVORITES</h3></li>
+          <li><h3>YOUR LISTS</h3></li>
+          <li><h4>Watchlist</h4></li>
+          <li><h4>Favorites</h4></li>
         </ul>
 
         </div>

@@ -19,6 +19,7 @@
   text-shadow: 4px 4px 6px rgba(255, 255, 255, 0.5);
   flex-grow: 1;
   padding: 2rem 2rem;
+  cursor: pointer;
 }
 
 .footer_list {

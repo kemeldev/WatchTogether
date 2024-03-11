@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { playIcon, ribbonIcon, starIcon } from '../../../assets/icons'
 import { urlBackgroundImage } from '../../../constants'
 import './overview.css'
@@ -6,11 +6,28 @@ import PropTypes from 'prop-types';
 import PlayTrailer from '../../../components/PlayTrailer';
 
 function Overview({title, name, overview, score, backImg, videosArray}) {
-
+  let videoRef = useRef(null)
   const [videoActive, setVideoActive] = useState(false)
   const handleVideo = () => {
     setVideoActive(state => !state)
   }
+
+
+  let handler = (e)=>{
+    if (videoRef.current && !videoRef.current.contains(e.target)) {
+      setVideoActive(false);
+    }
+  } 
+
+  // effect to close the video if it is clicked anywhere outside it
+  useEffect(()=> {
+    handler()
+    document.addEventListener("mousedown", handler)
+
+    return () => {
+      document.removeEventListener("mousedown", handler)
+    }
+  },[])
 
   const userScore = Math.ceil(score * 10) / 10;
   const displayTitle = title || name;
@@ -63,6 +80,7 @@ function Overview({title, name, overview, score, backImg, videosArray}) {
           <PlayTrailer 
             handleVideo={handleVideo}
             videoURL={videoKey()}
+            videoRef={videoRef}
           />
         }
 

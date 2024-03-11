@@ -1,23 +1,30 @@
 import './navbar.css'
-import { hamburgerMenu, profileLogo, glassMagnifier } from '../../../assets/icons'
+import { hamburgerMenu, starIcon, ribbonIcon } from '../../../assets/icons'
 import { useState } from 'react'
 import Menu from '../../../components/menu'
 import { Link } from 'react-router-dom'
+import useMovieStore from '../../../store/movieStore'
 
 function Navbar() {
+  const {favoritesNotificacion, watchNotificacion, resetNotifications } = useMovieStore()
   const [menuOpen , setMenuOpen] = useState(false)
   const series = "popularSeries"
   const movies = "popularMovies"
+  
   const toggleMenu = () => {
     setMenuOpen(prevMenuOpen => !prevMenuOpen);
   };
 
   return (
     <>
-      <div className='navbar_mainContainer'>
+      <div id='navbar' className='navbar_mainContainer'>
 
         <div className='navbar_leftSideContent'>
-          <h3>WatchTogether</h3>
+          <Link to={"/"} >
+            <h3>
+              WatchTogether
+            </h3>
+          </Link>
           <div className='navbar_hamburgerMenu'>
             <img 
             src={hamburgerMenu}
@@ -26,9 +33,11 @@ function Navbar() {
         </div>
 
         <div className='navbar_centerContent'>
-          <div >
-            WatchTogether
-          </div>
+          <Link to={"/"} >
+            <div>
+              WatchTogether
+            </div>
+          </Link>
           <ul>
             <Link to={"/search"} state={movies}>
               <li>Movies</li>
@@ -39,18 +48,43 @@ function Navbar() {
           </ul>
         </div>
 
-        <div className='navbar_SearchAndLogin'>
-          <div className='navbar_profileIcon'>
-            <img src={profileLogo} alt="profile logo" />
+        {/* <div className='navbar_SearchAndLogin'> */}
+          <Link className='navbar_SearchAndLogin'  to="/yourList" onClick={() =>resetNotifications()}>
+          <div className='navbar_watch icon'>
+            <img src={ribbonIcon} alt="ribbon icon image" />
+            {watchNotificacion > 0 && ( 
+                <div className='navbar_watchNotificacion'>
+                  {watchNotificacion}
+              </div>
+              )}
           </div>
-          <div>Login</div>
+          <div className='navbar_watch word'>
+            <h4>WatchLater</h4>
+            {watchNotificacion > 0 && ( 
+                <div className='navbar_watchNotificacion'>
+                  {watchNotificacion}
+              </div>
+              )}
+          </div>
 
-          <div>
-            <img src={glassMagnifier} alt="glass magnifier logo" />
+          <div className='navbar_watch icon'>
+            <img src={starIcon} alt="glass magnifier logo" />
+            {favoritesNotificacion > 0 && ( 
+                <div className='navbar_watchNotificacion'>
+                  {favoritesNotificacion}
+              </div>
+              )}
           </div>
-          <div>Search</div>
-          
-        </div>
+          <div className='navbar_watch word'>
+            <h4>Favorites</h4>
+            {favoritesNotificacion > 0 && ( 
+                <div className='navbar_watchNotificacion'>
+                  {favoritesNotificacion}
+              </div>
+              )}
+          </div>
+          </Link>
+        {/* </div> */}
 
         <Menu menuOpen={menuOpen} toggleMenu={toggleMenu}/>
 

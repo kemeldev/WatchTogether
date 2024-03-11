@@ -2,10 +2,15 @@ import './footer.css'
 
 function Footer() {
 
+  const scrollToSection= (sectionId) => {
+    const section = document.getElementById(sectionId);
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+
   return (
     <>
       <footer className='footer_mainContainer'>
-        <h2>WatchTogether</h2>
+        <h2 onClick={() => scrollToSection('navbar')} >WatchTogether</h2>
         
         <div className='footer_list'>
           <ul>About Us

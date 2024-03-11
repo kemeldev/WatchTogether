@@ -56,6 +56,7 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
                         >
                   <div key={item.id}>
                     <Poster
+                      item={item}
                       name={item.name}
                       title={item.title}
                       score={item.vote_average}

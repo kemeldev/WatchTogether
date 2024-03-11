@@ -16,7 +16,7 @@ function Search() {
   const [searchMulti] = useState(urls.multiSearch)
   const [searchFormError, setSearchFormError] = useState('')
   const [sortedData, setSortedData] = useState([])
-  const [dataToRender, setDataToRender] = useState([])
+
 
   useEffect(() => {
     // Scroll to the top of the page when the component is rendered
@@ -26,9 +26,11 @@ function Search() {
   //multiSearch function
   const handleSearchSubmit = async (e) => {
     e.preventDefault()
+    
     // const dataUsingRef = textInputRef.current.value
     const SearchWord = new FormData(e.target)
     const dataToSearch = SearchWord.get('specificSearch')
+    
 
     if (dataToSearch === '') {
       const newError = 'Cannot search with just a blank space'
@@ -45,6 +47,7 @@ function Search() {
       setSearchFormError(newError)
     } else {
       setSearchFormError(null)
+      setNowShowing(dataToSearch)
       setSearchUrl(searchMulti+dataToSearch+"&include_adult=false&language=en-US")
     }
   }
@@ -76,7 +79,7 @@ function Search() {
       if(state === "trendingSeries") {
         setSearchUrl(urls.trendingSeries) 
         setNowShowing("Trending Series") }
-      if(state === "trendingSeries") {
+      if(state === "trendingMovies") {
         setSearchUrl(urls.trendingMovies) 
         setNowShowing("Trending Movies") }
       if(state === "trendingAll") {
@@ -105,8 +108,6 @@ function Search() {
     });
     setSortedData(newArray);
   }
-
-  console.log(isLoading);
 
   const sortedDatatoNull = () => {
     setSortedData([]);
@@ -153,6 +154,7 @@ function Search() {
             sortByRank={sortByRank}
             sortByReleasedYear={sortByReleasedYear}
             sortedDatatoNull={sortedDatatoNull}
+            setNowShowing={setNowShowing}
 
         />
         <ShowingList

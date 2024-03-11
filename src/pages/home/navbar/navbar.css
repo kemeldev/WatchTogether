@@ -32,6 +32,10 @@
   font-size: larger;
 }
 
+.navbar_centerContent ul li:hover {
+  color: yellowgreen;
+}
+
 .navbar_SearchAndLogin {
   display: flex;
   align-items: center;
@@ -39,16 +43,46 @@
   justify-content: center;
   gap: 2rem;
   font-size: larger;
-
 }
 
-.navbar_SearchAndLogin div:nth-child(odd) {
-  display: none;
+.navbar_SearchAndLogin h4:hover {
+  color: yellowgreen;
+  cursor: pointer;
 }
 
 .navbar_SearchAndLogin div img {
   width: 30px;
   height: 30px;
+}
+
+.navbar_watch {
+  position: relative;
+
+}
+
+.navbar_watch h4 {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar_watchNotificacion {
+  position: absolute;
+  top: -.4rem;
+  right: -0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  color: white;
+  z-index: 2;
+  border-radius: 50%;
+  font-size: medium;
+}
+
+.icon {
+  display: none;
 }
 
 /* @media screen and (min-width: 800px) and (max-width: 1100px) {} */
@@ -82,28 +116,26 @@
     display: block;
   }
 
-  .navbar_SearchAndLogin div:nth-child(odd) {
+  .navbar_SearchAndLogin {
+    margin-top: 1rem;
+  }
+
+  .word {
+    display: none;
+  }
+
+  .icon {
     display: block;
   }
 
-
-  .navbar_SearchAndLogin div:nth-child(even) {
-    display: none;
-  }
 }
 
 @media screen and (max-width: 500px) {
   .navbar_mainContainer {
-    padding: 0.25rem 1rem 0 0rem;
+    padding: 0.25rem 2rem 0 0rem;
   }
 
-  .navbar_profileIcon img {
-    display: none;
+  .navbar_SearchAndLogin {
+    gap: 1.25rem;
   }
-
-
-
-
-
-
 }

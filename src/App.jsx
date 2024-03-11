@@ -4,6 +4,7 @@ import Home from './pages/home/home'
 import NotFoundNotAuth from './pages/notFoundNotAuth/notFoundNotAuth'
 import Details from './pages/details/details'
 import Search from './pages/search/search'
+import YourList from './pages/yourList/yourList'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='*' element={<NotFoundNotAuth />} />
         <Route path='/details/:id' element={<Details />} />
         <Route path='/search' element={<Search />} />
+        <Route path='/yourList' element={<YourList />} />
       </Routes>
     </>
   )
