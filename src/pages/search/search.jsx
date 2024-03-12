@@ -85,6 +85,12 @@ function Search() {
       if(state === "trendingAll") {
         setSearchUrl(urls.trendingMovies) 
         setNowShowing("Movies and Series") }
+      if(state === "topRatedMovies") {
+        setSearchUrl(urls.topRatedMovies) 
+        setNowShowing("All time top rated Movies") }
+      if(state === "topRatedSeries") {
+        setSearchUrl(urls.topRatedSeries) 
+        setNowShowing("All time top rated Series") }
       
   }, [state])
 

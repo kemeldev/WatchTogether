@@ -33,7 +33,6 @@ function ShowingList({isLoading, isError, dataToRender, fetchNextPage, hasNextPa
     }
   }, [movieOrTV, dataToRender])
 
-
   return (
     <>
       <div className='ShowingList_mainContainer'>

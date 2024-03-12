@@ -2,8 +2,16 @@ import './SearchParameters.css'
 import { chevronRight } from '../../../assets/icons'
 import { useState } from 'react'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function SearchParameters({handleSearchSubmit, searchFormError, handleSortChange, sortedDatatoNull, sortByRank, sortByReleasedYear}) {
+  const popularSeries = "popularSeries"
+  const popularMovies = "popularMovies"
+  const trendingSeries = "trendingSeries"
+  const trendingMovies = "trendingMovies"
+  const topRatedMovies = "topRatedMovies"
+  const topRatedSeries = "topRatedSeries"
+
   const [searchOpen, setSearchOpen] = useState(false)
   const [sortOpen, setSortOpen] = useState(false)
   const [quickOpen, setQuickOpen] = useState(false)
@@ -116,31 +124,36 @@ function SearchParameters({handleSearchSubmit, searchFormError, handleSortChange
             </div>
             <div className={`SearchP_quick ${quickOpen ? 'quickOpen' : ''}`}>
             <hr />
-            <form>
               <div className="quickItem">
-                <label htmlFor="quickName">Trending</label>
-                <input type="checkbox" id="quickName" name='quickName' />
+                <Link to={"/search"} state={popularMovies}>
+                  <button>Popular Movies</button>
+                </Link>
               </div>
               <div className="quickItem">
-                <label htmlFor="quickRate">Top Rated</label>
-                <input type="checkbox" id="quickRate" name='quickRate' />
+                <Link to={"/search"} state={trendingMovies}>
+                  <button>Trending Movies</button>
+                </Link>
               </div>
               <div className="quickItem">
-                <label htmlFor="quickYear">Popular</label>
-                <input type="checkbox" id="quickYear" name='quickYear'/>
+                <Link to={"/search"} state={topRatedMovies}>
+                  <button>All time Top Rated Movies</button>
+                </Link>
               </div>
-            </form>
-            <h4>Gender</h4>
-            <form action="/">
-              <label htmlFor="sortName"></label>
-              <input type="button" name='sortName'  />
-              <label htmlFor="sortRate"></label>
-              <input type="checkbox" name='sortRate'  />
-              <label htmlFor="sortYear"></label>
-              <input type="checkbox" name='sortYear'  />
-
-              <button>Search</button>
-            </form>
+              <div className="quickItem">
+                <Link to={"/search"} state={popularSeries}>
+                  <button>Popular Series</button>
+                </Link>
+              </div>
+              <div className="quickItem">
+                <Link to={"/search"} state={trendingSeries}>
+                  <button>Trending Series</button>
+                </Link>
+              </div>
+              <div className="quickItem">
+                <Link to={"/search"} state={topRatedSeries}>
+                  <button>All time Top Rated Series</button>
+                </Link>
+              </div>
             </div>
           </div>
 

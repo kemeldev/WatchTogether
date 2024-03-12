@@ -7,6 +7,7 @@ import ribbonIcon from './tagIcon.svg'
 import starIcon from './starIcon.png'
 import playIcon from './playIcon.png'
 import chevronRight from './chevron-right.svg'
+import trashIcon from './trashIcon.svg'
 
 
 export {
@@ -18,5 +19,6 @@ export {
   playIcon,
   glassMagnifier,
   starIcon,
-  chevronRight
+  chevronRight,
+  trashIcon
 }

@@ -77,6 +77,7 @@ function Details() {
       {state ? (
               
           <Overview
+            item={state.item}
             title={state.item?.title}
             name={state.item?.name}
             backImg={state.item?.backdrop_path}

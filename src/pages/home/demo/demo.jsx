@@ -50,9 +50,11 @@ function Demo() {
                       >
                 <div key={item.id}>
                   <Poster
+                    item={item}
                     name={item.name}
                     score={item.vote_average}
                     posterImg={item.poster_path} 
+                    
                   />
                 </div>
                </Link>

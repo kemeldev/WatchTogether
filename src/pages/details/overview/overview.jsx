@@ -4,8 +4,10 @@ import { urlBackgroundImage } from '../../../constants'
 import './overview.css'
 import PropTypes from 'prop-types';
 import PlayTrailer from '../../../components/PlayTrailer';
+import useMovieStore from '../../../store/movieStore';
 
-function Overview({title, name, overview, score, backImg, videosArray}) {
+function Overview({item, title, name, overview, score, backImg, videosArray}) {
+  const {incrementFavoritesNotification, incrementWatchNotification, addToFavorites,addToWatchlist } = useMovieStore()
   let videoRef = useRef(null)
   const [videoActive, setVideoActive] = useState(false)
   const handleVideo = () => {
@@ -49,11 +51,13 @@ function Overview({title, name, overview, score, backImg, videosArray}) {
           <article className='overview_description'>
             <div className='overview_title'>
               <h2>{displayTitle}</h2>
-              {videoKey() && <>
-              <img onClick={handleVideo} src={playIcon} alt="play button icon" />
-              <h3>Play Trailer</h3>
-              </>
-              }
+              <div className='overview_playTrailer'>
+                {videoKey() && <>
+                <img onClick={handleVideo} src={playIcon} alt="play button icon" />
+                <h3>Play Trailer</h3>
+                </>
+                }
+              </div>
             </div>
             <div>
               <h3>Overview</h3>
@@ -63,13 +67,29 @@ function Overview({title, name, overview, score, backImg, videosArray}) {
 
           <article className='overview_actions'>
               <h2>User Score</h2>
-              <h2>Add to WatchList</h2>
-              <h2>Add to Favorites</h2>
+              <h2 className='overview_addWatchList' onClick={(event) => {
+                event.preventDefault(); 
+                incrementWatchNotification(item);
+                addToWatchlist(item);
+              }}>Add to WatchList</h2>
+              <h2 className='overview_addWatchFavorites' onClick={(event) => {
+                event.preventDefault(); 
+                incrementFavoritesNotification(item);
+                addToFavorites(item);
+              }}>Add to Favorites</h2>
               <h3 className='score'>{userScore.toFixed(1)}</h3>
-              <div>
+              <div className='overview_addWatchList' onClick={(event) => {
+                event.preventDefault(); 
+                incrementWatchNotification(item);
+                addToWatchlist(item);
+              }}>
                 <img src={ribbonIcon} alt="ribbon icon" />
               </div>
-              <div>
+              <div className='overview_addWatchFavorites' onClick={(event) => {
+                event.preventDefault(); 
+                incrementFavoritesNotification(item);
+                addToFavorites(item);
+              }}>
                 <img src={starIcon} alt="star icon" />
               </div>
           </article>
@@ -98,6 +118,7 @@ Overview.propTypes = {
   score: PropTypes.number,
   backImg: PropTypes.string, 
   videosArray: PropTypes.object,
+  item: PropTypes.object
 };
 
 export default Overview

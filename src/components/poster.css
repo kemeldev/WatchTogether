@@ -66,8 +66,18 @@
   width: 100%;
 }
 
+.poster_clickable {
+  cursor: pointer;
+}
+
 .poster_clickable:hover {
-  color: purple;
+  color: rgb(226, 24, 226);
+  transform: scale(1.02);
+}
+
+.poster_clickable:active {
+  color: rgb(24, 226, 74);
+  transform: scale(1.02);
 }
 
 .poster_textContent img {

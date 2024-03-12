@@ -43,6 +43,7 @@ function Recommendations({recommendations}) {
                       >
                 <div key={item.id}>
                   <Backdrop
+                    item={item}
                     name={item.name}
                     title={item.title}
                     score={item.vote_average}

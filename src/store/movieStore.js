@@ -30,9 +30,21 @@ const useMovieStore = create((set) => ({
     }
   },
 
+  removeFromFavorites: (poster_img) => {
+    set((state) => ({
+      favoriteList: state.favoriteList.filter(item => item.poster_path !== poster_img)
+    }));
+  },
+
+  removeFromWatchList: (poster_img) => {
+    set((state) => ({
+      watchlist: state.watchlist.filter(item => item.poster_path !== poster_img)
+    }));
+  },
+
   incrementFavoritesNotification: (item) => {
     const isDuplicate = !!useMovieStore.getState().favoriteList.find(
-      (watchItem) => watchItem.backdrop_path === item.backdrop_path
+      (favItem) => favItem.poster_path === item.poster_path
     );
     if (!isDuplicate) {
       set((state) => ({
@@ -40,9 +52,11 @@ const useMovieStore = create((set) => ({
       }));
     }
   },
+
+
   incrementWatchNotification: (item) => {
     const isDuplicate = !!useMovieStore.getState().watchlist.find(
-      (watchItem) => watchItem.backdrop_path === item.backdrop_path
+      (watchItem) => watchItem.poster_path === item.poster_path
     );
     if (!isDuplicate) {
       set((state) => ({

@@ -65,12 +65,25 @@
 
 
 
+
 .overview_title img {
   width: 35px;
   height: 35px;
   transform: translateX(+30%);
   cursor: pointer;
   z-index: 2;
+}
+
+.overview_playTrailer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+
+.overview_playTrailer:hover {
+  color: yellowgreen;
 }
 
 
@@ -102,6 +115,22 @@
 
 .score {
   font-size: 32px;
+}
+
+.overview_addWatchList {
+  cursor: pointer;
+}
+
+.overview_addWatchList:hover {
+  transform: scale(1.2);
+}
+
+.overview_addWatchFavorites {
+  cursor: pointer;
+}
+
+.overview_addWatchFavorites:hover {
+  transform: scale(1.2);
 }
 
 @media screen and (max-width: 1000px) {

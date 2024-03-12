@@ -27,7 +27,7 @@ function Navbar() {
           </Link>
           <div className='navbar_hamburgerMenu'>
             <img 
-            src={hamburgerMenu}
+            src={hamburgerMenu} alt='hamburguer menu logo'
             onClick={()=>setMenuOpen(!menuOpen)} />
           </div>
         </div>
