@@ -19,7 +19,7 @@ function SearchNavbar({handleSearchingChange, sortedDatatoNull}) {
       <div className='SearchNavbar_mainContainer'>
 
         <div className='SearchNavbar_leftSideContent'>
-          <Link to="/">
+          <Link to="/WatchTogether">
             <h3>WatchTogether</h3>
           </Link>
           <div className='SearchNavbar_hamburgerMenu'>
@@ -30,7 +30,7 @@ function SearchNavbar({handleSearchingChange, sortedDatatoNull}) {
         </div>
 
         <div className='SearchNavbar_centerContent'>
-          <Link to="/">
+          <Link to="/WatchTogether">
             <h3>WatchTogether</h3>
           </Link>
           <ul>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { goBack } from '../../assets/icons'
 import { oops } from '../../assets/images'
 import './notFoundNotAuth.css'
@@ -15,10 +16,13 @@ function NotFoundNotAuth() {
           <p>OOOPS!</p>
           <p>
 It appears that the resource you are attempting to access either does not exist or you do not have the necessary permissions to access it.</p>
+        <Link to="/WatchTogether">
           <button>
             <img src={goBack} alt="go back icon" /> 
             Go Back
           </button>
+        </Link>
+          
         </div>
         
         

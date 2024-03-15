@@ -20,7 +20,7 @@ function Navbar() {
       <div id='navbar' className='navbar_mainContainer'>
 
         <div className='navbar_leftSideContent'>
-          <Link to={"/"} >
+          <Link to={"/WatchTogether"} >
             <h3>
               WatchTogether
             </h3>
@@ -33,7 +33,7 @@ function Navbar() {
         </div>
 
         <div className='navbar_centerContent'>
-          <Link to={"/"} >
+          <Link to={"/WatchTogether"} >
             <div>
               WatchTogether
             </div>

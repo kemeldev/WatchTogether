@@ -8,7 +8,7 @@ function YourListNav({changeShowing}) {
     <>
       <nav className='yourlistNav_mainContainer'>
         <div className='yourListNav_mainLogo'>
-          <Link to="/">
+          <Link to="/WatchTogether">
           <h3>WatchTogether</h3>
           </Link>
         </div>
